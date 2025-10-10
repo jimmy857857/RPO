@@ -1,0 +1,13 @@
+# 忽略所有文件和目录，除了miniprogram目录
+*
+!miniprogram/
+!miniprogram/**/*
+
+# 忽略miniprogram目录中的.git文件夹（如果存在）
+miniprogram/.git/
+miniprogram/node_modules/
+
+# 其他忽略规则
+*.log
+.DS_Store
+Thumbs.db
