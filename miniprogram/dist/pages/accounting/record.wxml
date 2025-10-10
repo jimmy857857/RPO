@@ -1,0 +1,150 @@
+<!--pages/accounting/record.wxml-->
+<view class="container">
+  <!-- 记账类型选择 -->
+  <view class="type-section">
+    <view class="type-buttons">
+      <view 
+        class="type-btn {{recordType === 'expense' ? 'active' : ''}}" 
+        data-type="expense"
+        bindtap="onTypeChange"
+      >
+        <text class="type-icon">📤</text>
+        <text class="type-text">支出</text>
+      </view>
+      <view 
+        class="type-btn {{recordType === 'income' ? 'active' : ''}}" 
+        data-type="income"
+        bindtap="onTypeChange"
+      >
+        <text class="type-icon">📥</text>
+        <text class="type-text">收入</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 金额输入 -->
+  <view class="amount-section">
+    <view class="amount-input">
+      <text class="currency-symbol">¥</text>
+      <input 
+        class="amount-field" 
+        type="digit" 
+        placeholder="0.00" 
+        value="{{amount}}"
+        bindinput="onAmountInput"
+        focus="{{true}}"
+      />
+    </view>
+  </view>
+
+  <!-- 分类选择 -->
+  <view class="category-section">
+    <view class="section-header">
+      <text class="section-title" style="color: var(--dopamine-primary);">选择分类</text>
+    </view>
+    <view class="category-grid">
+      <view 
+        class="category-item {{selectedCategory === item.id ? 'active' : ''}}" 
+        wx:for="{{categories}}" 
+        wx:key="id"
+        data-category="{{item.id}}"
+        bindtap="onCategorySelect"
+      >
+        <text class="category-icon">{{item.icon}}</text>
+        <text class="category-name">{{item.name}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 详细信息 -->
+  <view class="detail-section">
+    <view class="detail-item">
+      <text class="detail-label">日期</text>
+      <picker 
+        class="date-picker" 
+        mode="date" 
+        value="{{recordDate}}"
+        bindchange="onDateChange"
+      >
+        <text class="date-text">{{recordDate}}</text>
+      </picker>
+    </view>
+
+    <view class="detail-item">
+      <text class="detail-label">支付方式</text>
+      <picker 
+        class="payment-picker" 
+        range="{{paymentMethods}}"
+        value="{{paymentIndex}}"
+        bindchange="onPaymentChange"
+      >
+        <text class="payment-text">{{paymentMethods[paymentIndex]}}</text>
+      </picker>
+    </view>
+
+    <view class="detail-item">
+      <text class="detail-label">备注</text>
+      <input 
+        class="note-input" 
+        placeholder="添加备注（可选）"
+        value="{{note}}"
+        bindinput="onNoteInput"
+      />
+    </view>
+
+    <view class="detail-item">
+      <text class="detail-label">上传凭证</text>
+      <view class="upload-section">
+        <view 
+          class="upload-btn" 
+          bindtap="onUploadReceipt"
+          wx:if="{{!receiptImage}}"
+        >
+          <text class="upload-icon">📎</text>
+          <text class="upload-text">上传图片</text>
+        </view>
+        <view class="image-preview" wx:if="{{receiptImage}}">
+          <image class="receipt-image" src="{{receiptImage}}" mode="aspectFill"></image>
+          <button class="remove-btn" bindtap="onRemoveImage">×</button>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 操作按钮 -->
+  <view class="action-section">
+    <button 
+      class="action-btn save-btn" 
+      bindtap="onSaveRecord"
+      disabled="{{!amount || !selectedCategory}}"
+    >
+      {{isEditing ? '更新记录' : '保存记录'}}
+    </button>
+    
+    <button 
+      class="action-btn cancel-btn" 
+      bindtap="onCancel"
+      wx:if="{{isEditing}}"
+    >
+      取消编辑
+    </button>
+  </view>
+
+  <!-- 快捷操作 -->
+  <view class="quick-section">
+    <view class="quick-title">常用金额</view>
+    <view class="quick-amounts">
+      <view 
+        class="quick-item" 
+        wx:for="{{quickAmounts}}" 
+        wx:key="index"
+        data-amount="{{item}}"
+        bindtap="onQuickAmountSelect"
+      >
+        <text class="quick-text">¥{{item}}</text>
+      </view>
+    </view>
+  </view>
+
+
+</view>

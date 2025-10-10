@@ -1,0 +1,382 @@
+/* pages/profile/tools.wxss */
+.container {
+  padding: 30rpx;
+  background: linear-gradient(135deg, #1ba784 0%, #f3a694 100%);
+  min-height: 100%;
+}
+
+/* 工具选择区域 */
+.tools-section {
+  background: white;
+  border-radius: 20rpx;
+  padding: 25rpx;
+  margin-bottom: 30rpx;
+  box-shadow: 0 2rpx 12rpx rgba(0, 0, 0, 0.1);
+}
+
+.tools-list {
+  white-space: nowrap;
+}
+
+.tool-item {
+  display: inline-block;
+  text-align: center;
+  padding: 20rpx 30rpx;
+  background: #F8F9FA;
+  border-radius: 15rpx;
+  margin-right: 15rpx;
+  transition: all 0.3s ease;
+}
+
+.tool-item.active {
+  background: #1ba784;
+  color: white;
+  transform: scale(1.05);
+}
+
+.tool-icon {
+  display: block;
+  font-size: 48rpx;
+  margin-bottom: 10rpx;
+}
+
+.tool-name {
+  display: block;
+  font-size: 24rpx;
+  font-weight: bold;
+}
+
+/* 工具内容区域 */
+.tool-content {
+  background: white;
+  border-radius: 20rpx;
+  padding: 30rpx;
+  margin-bottom: 30rpx;
+  box-shadow: 0 2rpx 12rpx rgba(0, 0, 0, 0.1);
+}
+
+/* 计算器样式 */
+.calculator-display {
+  background: #1A1A1A;
+  border-radius: 10rpx;
+  padding: 30rpx;
+  margin-bottom: 20rpx;
+  text-align: right;
+}
+
+.display-text {
+  color: white;
+  font-size: 48rpx;
+  font-family: 'Courier New', monospace;
+}
+
+.calculator-buttons {
+  display: grid;
+  gap: 10rpx;
+}
+
+.button-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 10rpx;
+}
+
+.calc-btn {
+  height: 80rpx;
+  border: none;
+  border-radius: 10rpx;
+  font-size: 28rpx;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.calc-btn.number {
+  background: #F8F9FA;
+  color: #333;
+}
+
+.calc-btn.operator {
+  background: #1ba784;
+  color: white;
+}
+
+.calc-btn.function {
+  background: var(--dopamine-accent);
+  color: white;
+}
+
+.calc-btn.wide {
+  grid-column: span 2;
+}
+
+.calc-btn.tall {
+  grid-row: span 2;
+}
+
+/* 汇率换算样式 */
+.currency-converter {
+  display: flex;
+  flex-direction: column;
+  gap: 30rpx;
+}
+
+.conversion-section {
+  display: flex;
+  align-items: center;
+  gap: 20rpx;
+}
+
+.input-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 10rpx;
+}
+
+.input-label {
+  font-size: 24rpx;
+  color: #666;
+  font-weight: bold;
+}
+
+.currency-picker {
+  background: #F8F9FA;
+  border-radius: 8rpx;
+  padding: 15rpx;
+  text-align: center;
+}
+
+.picker-text {
+  font-size: 24rpx;
+  color: #333;
+}
+
+.amount-input {
+  background: #F8F9FA;
+  border-radius: 8rpx;
+  padding: 20rpx;
+  font-size: 28rpx;
+  text-align: center;
+}
+
+.amount-input.result {
+  background: #E8F5E8;
+  color: #1ba784;
+  font-weight: bold;
+}
+
+.switch-btn {
+  background: #1ba784;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 60rpx;
+  height: 60rpx;
+  font-size: 24rpx;
+}
+
+.rate-info {
+  text-align: center;
+  padding: 20rpx;
+  background: #F8F9FA;
+  border-radius: 10rpx;
+}
+
+.rate-text {
+  display: block;
+  font-size: 24rpx;
+  color: #666;
+  margin-bottom: 5rpx;
+}
+
+.update-time {
+  display: block;
+  font-size: 20rpx;
+  color: #999;
+}
+
+.currency-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15rpx;
+}
+
+.currency-item {
+  text-align: center;
+  padding: 20rpx;
+  background: #F8F9FA;
+  border-radius: 10rpx;
+}
+
+.currency-symbol {
+  display: block;
+  font-size: 36rpx;
+  margin-bottom: 5rpx;
+}
+
+.currency-name {
+  display: block;
+  font-size: 22rpx;
+  color: #333;
+  margin-bottom: 2rpx;
+}
+
+.currency-code {
+  display: block;
+  font-size: 18rpx;
+  color: #666;
+}
+
+/* AA制分摊样式 */
+.split-calculator {
+  display: flex;
+  flex-direction: column;
+  gap: 30rpx;
+}
+
+.input-section {
+  display: flex;
+  flex-direction: column;
+  gap: 20rpx;
+}
+
+.option-group {
+  display: flex;
+  flex-direction: column;
+  gap: 15rpx;
+}
+
+.option-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15rpx 0;
+}
+
+.option-label {
+  font-size: 24rpx;
+  color: #333;
+}
+
+.tax-input {
+  background: #F8F9FA;
+  border-radius: 6rpx;
+  padding: 10rpx 15rpx;
+  width: 120rpx;
+  text-align: center;
+}
+
+.result-section {
+  background: #F8F9FA;
+  border-radius: 15rpx;
+  padding: 25rpx;
+}
+
+.result-card {
+  text-align: center;
+  padding: 30rpx;
+  background: white;
+  border-radius: 10rpx;
+  margin-bottom: 20rpx;
+}
+
+.result-label {
+  display: block;
+  font-size: 24rpx;
+  color: #666;
+  margin-bottom: 10rpx;
+}
+
+.result-amount {
+  display: block;
+  font-size: 48rpx;
+  font-weight: bold;
+  color: #1ba784;
+  margin-bottom: 5rpx;
+}
+
+.result-desc {
+  display: block;
+  font-size: 20rpx;
+  color: #999;
+}
+
+.breakdown {
+  border-top: 1rpx solid #E9ECEF;
+  padding-top: 20rpx;
+}
+
+.breakdown-title {
+  display: block;
+  font-size: 22rpx;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 15rpx;
+}
+
+.breakdown-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8rpx 0;
+}
+
+.breakdown-label {
+  font-size: 20rpx;
+  color: #666;
+}
+
+.breakdown-value {
+  font-size: 20rpx;
+  color: #333;
+  font-weight: bold;
+}
+
+/* 开发中样式 */
+.coming-soon {
+  text-align: center;
+  padding: 60rpx 30rpx;
+}
+
+.soon-icon {
+  display: block;
+  font-size: 80rpx;
+  margin-bottom: 20rpx;
+}
+
+.soon-title {
+  display: block;
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 10rpx;
+}
+
+.soon-desc {
+  display: block;
+  font-size: 24rpx;
+  color: #666;
+}
+
+/* 分享区域 */
+.share-section {
+  text-align: center;
+}
+
+.share-btn {
+  background: #1ba784;
+  color: white;
+  border: none;
+  border-radius: 50rpx;
+  padding: 20rpx 40rpx;
+  font-size: 26rpx;
+  display: inline-flex;
+  align-items: center;
+  gap: 10rpx;
+}
+
+.share-icon {
+  font-size: 24rpx;
+}

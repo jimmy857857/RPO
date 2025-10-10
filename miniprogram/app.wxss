@@ -1,0 +1,155 @@
+/**app.wxss**/
+.container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 200rpx 0;
+  box-sizing: border-box;
+}
+
+/* 全局样式 */
+page {
+  background: #F8F9FA;
+  font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica, 'Segoe UI', Arial, Roboto, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft Yahei', sans-serif;
+}
+
+/* 按钮样式 */
+button {
+  border-radius: 10rpx;
+}
+
+button::after {
+  border: none;
+}
+
+/* 输入框样式 */
+input {
+  border-radius: 8rpx;
+  padding: 20rpx;
+  background: #FFFFFF;
+  border: 1rpx solid #E9ECEF;
+}
+
+input:focus {
+  border-color: #28A745;
+}
+
+/* 卡片阴影 */
+.card-shadow {
+  box-shadow: 0 2rpx 12rpx rgba(0, 0, 0, 0.1);
+}
+
+/* 动画效果 */
+.fade-in {
+  animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20rpx); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.slide-in {
+  animation: slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+  from { transform: translateX(-100%); }
+  to { transform: translateX(0); }
+}
+
+/* 加载动画 */
+.loading-spinner {
+  width: 40rpx;
+  height: 40rpx;
+  border: 4rpx solid #f3f3f3;
+  border-top: 4rpx solid #28A745;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* 响应式布局 */
+@media (max-width: 750rpx) {
+  .container {
+    padding: 30rpx;
+  }
+}
+
+/* 主题色系定义 */
+page {
+  --dopamine-primary: #1ba784; /* 主色调 - 绿色 */
+  --dopamine-secondary: #f3a694; /* 辅助色 - 橙色 */
+  --dopamine-success: #1ba784; /* 成功色 - 绿色 */
+  --dopamine-warning: #f3a694; /* 警告色 - 橙色 */
+  --dopamine-danger: #EF476F; /* 危险色 - 红色 */
+  --dopamine-accent: #118AB2; /* 强调色 - 青色 */
+  --dopamine-highlight: #f3a694; /* 高亮色 - 橙色 */
+}
+
+.theme-primary {
+  color: var(--dopamine-primary);
+}
+
+.theme-secondary {
+  color: var(--dopamine-secondary);
+}
+
+.theme-success {
+  color: var(--dopamine-success);
+}
+
+.theme-warning {
+  color: var(--dopamine-warning);
+}
+
+.theme-danger {
+  color: var(--dopamine-danger);
+}
+
+.theme-accent {
+  color: var(--dopamine-accent);
+}
+
+.bg-primary {
+  background: var(--dopamine-primary);
+}
+
+.bg-secondary {
+  background: var(--dopamine-secondary);
+}
+
+.bg-success {
+  background: var(--dopamine-success);
+}
+
+.bg-warning {
+  background: var(--dopamine-warning);
+}
+
+.bg-danger {
+  background: var(--dopamine-danger);
+}
+
+.bg-accent {
+  background: var(--dopamine-accent);
+}
+
+/* 多巴胺渐变背景 */
+.gradient-primary {
+  background: linear-gradient(135deg, var(--dopamine-primary), var(--dopamine-highlight));
+}
+
+.gradient-secondary {
+  background: linear-gradient(135deg, var(--dopamine-secondary), var(--dopamine-success));
+}
+
+.gradient-accent {
+  background: linear-gradient(135deg, var(--dopamine-accent), var(--dopamine-secondary));
+}

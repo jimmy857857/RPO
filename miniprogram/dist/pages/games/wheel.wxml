@@ -1,0 +1,100 @@
+<!--pages/games/wheel.wxml-->
+<view class="container">
+  <!-- 转盘模板选择 -->
+  <view class="template-section">
+    <view class="section-header">
+      <text class="section-title" style="color: var(--dopamine-primary);">选择模板</text>
+      <button class="custom-btn" bindtap="onCustomTemplate">自定义</button>
+    </view>
+    <scroll-view class="template-list" scroll-x="true">
+      <view 
+        class="template-item {{templateIndex === index ? 'active' : ''}}" 
+        wx:for="{{templates}}" 
+        wx:key="id"
+        data-index="{{index}}"
+        bindtap="onTemplateSelect"
+      >
+        <text class="template-name">{{item.name}}</text>
+        <text class="template-count">{{item.options.length}}项</text>
+      </view>
+    </scroll-view>
+  </view>
+
+  <!-- 转盘区域 -->
+  <view class="wheel-section">
+    <canvas 
+      class="wheel-canvas" 
+      canvas-id="wheelCanvas" 
+      bindtouchstart="onCanvasTouchStart"
+    ></canvas>
+    
+    <view class="wheel-controls">
+      <button 
+        class="spin-btn {{isSpinning ? 'disabled' : ''}}" 
+        bindtap="onSpinWheel"
+        disabled="{{isSpinning}}"
+      >
+        {{isSpinning ? '旋转中...' : '开始旋转'}}
+      </button>
+      
+      <view class="result-display" wx:if="{{showResult}}">
+        <text class="result-text">结果: {{resultText}}</text>
+        <button class="share-btn" bindtap="onShareResult">分享</button>
+      </view>
+    </view>
+  </view>
+
+  <!-- 自定义模板编辑 -->
+  <view class="custom-section" wx:if="{{showCustom}}">
+    <view class="section-header">
+      <text class="section-title" style="color: var(--dopamine-primary);">自定义模板</text>
+      <button class="save-btn" bindtap="onSaveTemplate">保存</button>
+    </view>
+    
+    <view class="custom-form">
+      <input 
+        class="template-input" 
+        placeholder="模板名称" 
+        value="{{customTemplate.name}}"
+        bindinput="onTemplateNameChange"
+      />
+      
+      <view class="options-list">
+        <view 
+          class="option-item" 
+          wx:for="{{customTemplate.options}}" 
+          wx:key="index"
+        >
+          <input 
+            class="option-input" 
+            placeholder="选项内容" 
+            value="{{item}}"
+            data-index="{{index}}"
+            bindinput="onOptionChange"
+          />
+          <button 
+            class="remove-btn" 
+            data-index="{{index}}"
+            bindtap="onRemoveOption"
+          >删除</button>
+        </view>
+      </view>
+      
+      <button class="add-option-btn" bindtap="onAddOption">
+        + 添加选项
+      </button>
+    </view>
+  </view>
+
+
+
+  <!-- 操作按钮 -->
+  <view class="action-section">
+    <button class="action-btn reset-btn" bindtap="onResetWheel">
+      重置转盘
+    </button>
+    <button class="action-btn history-btn" bindtap="onShowHistory">
+      历史记录
+    </button>
+  </view>
+</view>

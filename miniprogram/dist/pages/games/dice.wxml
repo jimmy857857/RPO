@@ -1,0 +1,135 @@
+<!--pages/games/dice.wxml-->
+<view class="container">
+  <!-- 游戏模式选择 -->
+  <view class="mode-section">
+    <view class="mode-buttons">
+      <view 
+        class="mode-btn {{gameMode === 'single' ? 'active' : ''}}" 
+        data-mode="single"
+        bindtap="onModeChange"
+      >
+        单人模式
+      </view>
+      <view 
+        class="mode-btn {{gameMode === 'multi' ? 'active' : ''}}" 
+        data-mode="multi"
+        bindtap="onModeChange"
+      >
+        多人模式
+      </view>
+    </view>
+  </view>
+
+  <!-- 骰子区域 -->
+  <view class="dice-section">
+    <view class="dice-container">
+      <view class="dice {{isRolling ? 'rolling' : ''}}" style="transform: rotate({{diceRotation}}deg)">
+        <view class="dice-face face-1 {{diceValue === 1 ? 'active' : ''}}">
+          <view class="dot center"></view>
+        </view>
+        <view class="dice-face face-2 {{diceValue === 2 ? 'active' : ''}}">
+          <view class="dot top-left"></view>
+          <view class="dot bottom-right"></view>
+        </view>
+        <view class="dice-face face-3 {{diceValue === 3 ? 'active' : ''}}">
+          <view class="dot top-left"></view>
+          <view class="dot center"></view>
+          <view class="dot bottom-right"></view>
+        </view>
+        <view class="dice-face face-4 {{diceValue === 4 ? 'active' : ''}}">
+          <view class="dot top-left"></view>
+          <view class="dot top-right"></view>
+          <view class="dot bottom-left"></view>
+          <view class="dot bottom-right"></view>
+        </view>
+        <view class="dice-face face-5 {{diceValue === 5 ? 'active' : ''}}">
+          <view class="dot top-left"></view>
+          <view class="dot top-right"></view>
+          <view class="dot center"></view>
+          <view class="dot bottom-left"></view>
+          <view class="dot bottom-right"></view>
+        </view>
+        <view class="dice-face face-6 {{diceValue === 6 ? 'active' : ''}}">
+          <view class="dot top-left"></view>
+          <view class="dot top-right"></view>
+          <view class="dot middle-left"></view>
+          <view class="dot middle-right"></view>
+          <view class="dot bottom-left"></view>
+          <view class="dot bottom-right"></view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 掷骰子按钮 -->
+    <button 
+      class="roll-btn {{isRolling ? 'disabled' : ''}}" 
+      bindtap="onRollDice"
+      disabled="{{isRolling}}"
+    >
+      {{isRolling ? '掷骰子中...' : '掷骰子'}}
+    </button>
+  </view>
+
+  <!-- 多人模式玩家信息 -->
+  <view class="players-section" wx:if="{{gameMode === 'multi'}}">
+    <view class="section-header">
+      <text class="section-title">玩家信息</text>
+      <button class="add-player-btn" bindtap="onAddPlayer">+ 添加玩家</button>
+    </view>
+    <view class="players-list">
+      <view 
+        class="player-item {{index === currentPlayer ? 'active' : ''}}" 
+        wx:for="{{players}}" 
+        wx:key="index"
+      >
+        <view class="player-info">
+          <text class="player-name">{{item.name}}</text>
+          <text class="player-score">得分: {{item.score}}</text>
+        </view>
+        <text class="player-turn" wx:if="{{index === currentPlayer}}">当前回合</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 结果展示 -->
+  <view class="result-section {{showResult ? 'show' : ''}}">
+    <view class="result-card">
+      <view class="result-header">
+        <text class="result-title">掷骰结果</text>
+      </view>
+      <view class="result-content">
+        <text class="result-value">{{diceValue}}</text>
+        <text class="result-desc">点</text>
+      </view>
+      <view class="result-actions">
+        <button class="share-btn" bindtap="onShareResult">分享</button>
+        <button class="close-btn" bindtap="onCloseResult">继续</button>
+      </view>
+    </view>
+  </view>
+
+  <!-- 历史记录 -->
+  <view class="history-section" wx:if="{{rollHistory.length > 0}}">
+    <view class="section-header">
+      <text class="section-title">历史记录</text>
+      <button class="clear-btn" bindtap="onClearHistory">清除</button>
+    </view>
+    <view class="history-list">
+      <view 
+        class="history-item" 
+        wx:for="{{rollHistory}}" 
+        wx:key="time"
+      >
+        <text class="history-value">{{item.value}}</text>
+        <text class="history-time">{{item.time}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 操作按钮 -->
+  <view class="action-section">
+    <button class="action-btn restart-btn" bindtap="onRestartGame">
+      重新开始
+    </button>
+  </view>
+</view>

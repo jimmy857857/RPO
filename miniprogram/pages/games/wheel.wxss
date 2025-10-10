@@ -1,0 +1,311 @@
+/* pages/games/wheel.wxss */
+.container {
+  padding: 30rpx;
+  background: linear-gradient(135deg, var(--dopamine-primary) 0%, var(--dopamine-secondary) 100%);
+  min-height: 100%;
+}
+
+/* 模板选择区域 */
+.template-section {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 20rpx;
+  padding: 25rpx;
+  margin-bottom: 30rpx;
+  backdrop-filter: blur(10rpx);
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20rpx;
+}
+
+.section-title {
+  font-size: 28rpx;
+  font-weight: bold;
+  color: var(--dopamine-primary);
+}
+
+.custom-btn, .save-btn {
+  background: var(--dopamine-primary);
+  color: white;
+  border: none;
+  border-radius: 8rpx;
+  padding: 10rpx 15rpx;
+  font-size: 22rpx;
+}
+
+.template-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15rpx;
+  max-height: 300rpx;
+  overflow-y: auto;
+}
+
+.template-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12rpx 20rpx;
+  background: #F8F9FA;
+  border-radius: 15rpx;
+  transition: all 0.3s ease;
+  position: relative;
+  min-height: 70rpx;
+  gap: 12rpx;
+}
+
+.template-item.default-template {
+  background: linear-gradient(135deg, #F8F9FA 0%, #E9ECEF 100%);
+}
+
+.template-item.custom-template {
+  background: linear-gradient(135deg, #E8F5FF 0%, #D1ECF1 100%);
+  border: 2rpx solid #B8E6F2;
+}
+
+.template-item.active {
+  background: var(--dopamine-primary);
+  color: white;
+  transform: scale(1.05);
+}
+
+.template-item.active.custom-template {
+  background: linear-gradient(135deg, var(--dopamine-primary) 0%, #1ba784 100%);
+}
+
+.template-info {
+  flex: 1;
+  text-align: left;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-right: 10rpx;
+}
+
+.template-name {
+  display: block;
+  font-size: 24rpx;
+  font-weight: bold;
+  margin-bottom: 4rpx;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.2;
+}
+
+.template-count {
+  display: block;
+  font-size: 20rpx;
+  opacity: 0.7;
+  line-height: 1.2;
+}
+
+.template-type {
+  display: block;
+  font-size: 18rpx;
+  color: #1ba784;
+  font-weight: bold;
+  margin-top: 4rpx;
+  line-height: 1.2;
+}
+
+.template-item.active .template-type {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.delete-btn {
+  background: #FF6B6B;
+  color: white;
+  border: none;
+  border-radius: 6rpx;
+  padding: 6rpx 10rpx;
+  font-size: 16rpx;
+  margin-left: 10rpx;
+  white-space: nowrap;
+  flex-shrink: 0;
+  height: 32rpx;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 50rpx;
+}
+
+/* 转盘区域 */
+.wheel-section {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 20rpx;
+  padding: 40rpx;
+  margin-bottom: 30rpx;
+  text-align: center;
+  backdrop-filter: blur(10rpx);
+}
+
+.wheel-canvas {
+  width: 600rpx;
+  height: 600rpx;
+  margin: 0 auto;
+}
+
+.wheel-controls {
+  margin-top: 30rpx;
+}
+
+.spin-btn {
+  background: linear-gradient(135deg, var(--dopamine-accent), var(--dopamine-highlight));
+  color: white;
+  border: none;
+  border-radius: 50rpx;
+  padding: 25rpx 60rpx;
+  font-size: 32rpx;
+  font-weight: bold;
+  box-shadow: 0 4rpx 15rpx rgba(255, 107, 107, 0.4);
+}
+
+.spin-btn.disabled {
+  background: #CCC;
+  box-shadow: none;
+}
+
+.result-display {
+  margin-top: 20rpx;
+  padding: 20rpx;
+  background: #E8F5E8;
+  border-radius: 15rpx;
+}
+
+.result-text {
+  display: block;
+  font-size: 28rpx;
+  font-weight: bold;
+  color: #1ba784;
+  margin-bottom: 15rpx;
+}
+
+.share-btn {
+  background: var(--dopamine-primary);
+  color: white;
+  border: none;
+  border-radius: 8rpx;
+  padding: 10rpx 20rpx;
+  font-size: 24rpx;
+}
+
+/* 自定义模板区域 */
+.custom-section {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 20rpx;
+  padding: 25rpx;
+  margin-bottom: 30rpx;
+  backdrop-filter: blur(10rpx);
+}
+
+.custom-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20rpx;
+}
+
+.template-input {
+  border: 1rpx solid #E9ECEF;
+  border-radius: 8rpx;
+  padding: 20rpx;
+  background: white;
+}
+
+.options-list {
+  max-height: 400rpx;
+  overflow-y: auto;
+}
+
+.option-item {
+  display: flex;
+  align-items: center;
+  gap: 15rpx;
+  margin-bottom: 15rpx;
+}
+
+.option-input {
+  flex: 1;
+  border: 1rpx solid #E9ECEF;
+  border-radius: 8rpx;
+  padding: 15rpx;
+  background: white;
+}
+
+.remove-btn {
+  background: #FF6B6B;
+  color: white;
+  border: none;
+  border-radius: 6rpx;
+  padding: 10rpx 15rpx;
+  font-size: 20rpx;
+}
+
+.add-option-btn {
+  background: var(--dopamine-accent);
+  color: white;
+  border: none;
+  border-radius: 8rpx;
+  padding: 15rpx;
+  font-size: 24rpx;
+}
+
+/* 颜色选择区域 */
+.color-section {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 20rpx;
+  padding: 25rpx;
+  margin-bottom: 30rpx;
+  backdrop-filter: blur(10rpx);
+}
+
+.color-palette {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 15rpx;
+}
+
+.color-item {
+  width: 60rpx;
+  height: 60rpx;
+  border-radius: 50%;
+  border: 3rpx solid transparent;
+  transition: all 0.3s ease;
+}
+
+.color-item.active {
+  border-color: #333;
+  transform: scale(1.2);
+}
+
+/* 操作按钮区域 */
+.action-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20rpx;
+}
+
+.action-btn {
+  background: #F8F9FA;
+  color: #666;
+  border: none;
+  border-radius: 15rpx;
+  padding: 20rpx;
+  font-size: 26rpx;
+  font-weight: bold;
+}
+
+.reset-btn {
+  background: var(--dopamine-highlight);
+  color: white;
+}
+
+.history-btn {
+  background: var(--dopamine-accent);
+  color: white;
+}

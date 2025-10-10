@@ -1,0 +1,194 @@
+/* pages/profile/settings.wxss */
+.container {
+  background: linear-gradient(135deg, #1ba784 0%, #f3a694 100%);
+  min-height: 100%;
+}
+
+/* 用户信息 */
+.user-section {
+  background: linear-gradient(135deg, #1ba784, #f3a694);
+  padding: 40rpx 30rpx;
+  color: white;
+}
+
+.user-card {
+  display: flex;
+  align-items: center;
+  margin-bottom: 30rpx;
+}
+
+.user-avatar {
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 50%;
+  border: 4rpx solid rgba(255, 255, 255, 0.3);
+  margin-right: 25rpx;
+}
+
+.user-info {
+  flex: 1;
+}
+
+.user-name {
+  display: block;
+  font-size: 36rpx;
+  font-weight: bold;
+  margin-bottom: 8rpx;
+}
+
+.user-desc {
+  display: block;
+  font-size: 24rpx;
+  opacity: 0.9;
+}
+
+.user-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20rpx;
+}
+
+.stat-item {
+  text-align: center;
+}
+
+.stat-value {
+  display: block;
+  font-size: 32rpx;
+  font-weight: bold;
+  margin-bottom: 5rpx;
+}
+
+.stat-label {
+  display: block;
+  font-size: 22rpx;
+  opacity: 0.9;
+}
+
+/* 设置选项 */
+.settings-section {
+  padding: 30rpx;
+}
+
+.setting-group {
+  background: white;
+  border-radius: 20rpx;
+  margin-bottom: 30rpx;
+  overflow: hidden;
+  box-shadow: 0 2rpx 10rpx rgba(0, 0, 0, 0.1);
+}
+
+.group-title {
+  padding: 25rpx 30rpx;
+  font-size: 28rpx;
+  font-weight: bold;
+  color: #1ba784;
+  border-bottom: 1rpx solid #F0F0F0;
+  background: #FAFAFA;
+}
+
+.setting-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 25rpx 30rpx;
+  border-bottom: 1rpx solid #F0F0F0;
+  transition: background-color 0.2s ease;
+}
+
+.setting-item:last-child {
+  border-bottom: none;
+}
+
+.setting-item:active {
+  background: #F8F9FA;
+}
+
+.setting-item.danger:active {
+  background: #FFF5F5;
+}
+
+.item-left {
+  display: flex;
+  align-items: center;
+  flex: 1;
+}
+
+.item-icon {
+  font-size: 32rpx;
+  margin-right: 20rpx;
+  width: 40rpx;
+  text-align: center;
+}
+
+.item-content {
+  flex: 1;
+}
+
+.item-title {
+  display: block;
+  font-size: 28rpx;
+  color: #333;
+  margin-bottom: 5rpx;
+}
+
+.item-desc {
+  display: block;
+  font-size: 22rpx;
+  color: #666;
+}
+
+.picker-value {
+  padding: 10rpx 20rpx;
+  background: #F8F9FA;
+  border-radius: 8rpx;
+  font-size: 24rpx;
+  color: #666;
+  min-width: 120rpx;
+  text-align: center;
+}
+
+.item-arrow {
+  font-size: 32rpx;
+  color: #999;
+  margin-left: 15rpx;
+}
+
+/* 危险操作样式 */
+.setting-item.danger .item-title {
+  color: var(--dopamine-danger);
+}
+
+.setting-item.danger .item-icon {
+  color: var(--dopamine-danger);
+}
+
+/* 切换用户按钮 */
+.switch-user-btn {
+  background: rgba(255, 255, 255, 0.2);
+  border: 2rpx solid rgba(255, 255, 255, 0.5);
+  border-radius: 50rpx;
+  padding: 20rpx 40rpx;
+  color: white;
+  font-size: 28rpx;
+  font-weight: bold;
+  backdrop-filter: blur(10rpx);
+  transition: all 0.3s ease;
+  margin-top: 20rpx;
+}
+
+.switch-user-btn:active {
+  background: rgba(255, 255, 255, 0.3);
+  transform: scale(0.95);
+}
+
+/* 版本信息 */
+.version-info {
+  text-align: center;
+  padding: 40rpx 0;
+}
+
+.version-text {
+  font-size: 24rpx;
+  color: #999;
+}

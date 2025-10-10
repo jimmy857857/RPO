@@ -1,0 +1,23 @@
+<!--miniprogram/components/cloudTipModal/cloudTipModal.wxml-->
+<view class="modal-container" wx:if="{{showModal}}">
+  <view class="modal-mask" bindtap="onCloseModal"></view>
+  <view class="modal-content">
+    <view class="modal-header">
+      <text class="modal-title">{{modalTitle}}</text>
+      <view class="modal-close" bindtap="onCloseModal">×</view>
+    </view>
+    <view class="modal-body">
+      <text class="modal-text">{{modalContent}}</text>
+      <button 
+        class="login-btn" 
+        open-type="getUserInfo" 
+        bindgetuserinfo="onGotUserInfo"
+      >
+        授权登录
+      </button>
+      <button class="setting-btn" bindtap="onOpenSetting">
+        打开设置
+      </button>
+    </view>
+  </view>
+</view>

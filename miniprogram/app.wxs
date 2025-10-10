@@ -1,0 +1,88 @@
+// app.wxs - 全局WXS工具函数
+var format = {
+  // 格式化金额
+  amount: function(value) {
+    if (!value && value !== 0) return '0.00';
+    var num = parseFloat(value);
+    return num.toFixed(2);
+  },
+
+  // 格式化日期
+  date: function(date, format) {
+    if (!date) return '';
+    var d = getDate(date);
+    var year = d.getFullYear();
+    var month = d.getMonth() + 1;
+    var day = d.getDate();
+    
+    month = month < 10 ? '0' + month : month;
+    day = day < 10 ? '0' + day : day;
+    
+    if (format === 'YYYY-MM-DD') {
+      return year + '-' + month + '-' + day;
+    } else if (format === 'MM-DD') {
+      return month + '-' + day;
+    } else {
+      return year + '年' + month + '月' + day + '日';
+    }
+  },
+
+  // 格式化时间
+  time: function(date) {
+    if (!date) return '';
+    var d = getDate(date);
+    var now = getDate();
+    var diff = now - d;
+    var minutes = Math.floor(diff / 60000);
+    var hours = Math.floor(diff / 3600000);
+    var days = Math.floor(diff / 86400000);
+
+    if (minutes < 60) {
+      return minutes + '分钟前';
+    } else if (hours < 24) {
+      return hours + '小时前';
+    } else if (days < 7) {
+      return days + '天前';
+    } else {
+      return this.date(date, 'YYYY-MM-DD');
+    }
+  },
+
+  // 数字千分位格式化（WXS兼容版本）
+  thousand: function(num) {
+    if (!num && num !== 0) return '0';
+    var str = num.toString();
+    var parts = str.split('.');
+    var integerPart = parts[0];
+    var decimalPart = parts[1] || '';
+    
+    // 处理整数部分
+    var result = '';
+    var count = 0;
+    for (var i = integerPart.length - 1; i >= 0; i--) {
+      result = integerPart[i] + result;
+      count++;
+      if (count % 3 === 0 && i > 0) {
+        result = ',' + result;
+      }
+    }
+    
+    // 添加小数部分
+    if (decimalPart) {
+      result = result + '.' + decimalPart;
+    }
+    
+    return result;
+  },
+
+  // 百分比格式化
+  percent: function(value, total) {
+    if (!total || total === 0) return '0%';
+    var percent = (value / total) * 100;
+    return percent.toFixed(1) + '%';
+  }
+};
+
+module.exports = {
+  format: format
+};

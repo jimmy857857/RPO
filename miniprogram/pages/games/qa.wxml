@@ -1,0 +1,124 @@
+<!--pages/games/qa.wxml-->
+<view class="container">
+  <!-- 游戏类型选择 -->
+  <view class="game-type-section">
+    <view class="type-buttons">
+      <view 
+        class="type-btn {{gameType === 'truth' ? 'active' : ''}}" 
+        data-type="truth"
+        bindtap="onGameTypeChange"
+      >
+        <text class="type-icon">💬</text>
+        <text class="type-text">真心话</text>
+      </view>
+      <view 
+        class="type-btn {{gameType === 'dare' ? 'active' : ''}}" 
+        data-type="dare"
+        bindtap="onGameTypeChange"
+      >
+        <text class="type-icon">🎯</text>
+        <text class="type-text">大冒险</text>
+      </view>
+      <view 
+        class="type-btn {{gameType === 'mixed' ? 'active' : ''}}" 
+        data-type="mixed"
+        bindtap="onGameTypeChange"
+      >
+        <text class="type-icon">🎲</text>
+        <text class="type-text">混合模式</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 当前玩家信息 -->
+  <view class="player-section">
+    <view class="current-player">
+      <text class="player-label">当前玩家</text>
+      <text class="player-name">{{players[currentPlayer]}}</text>
+    </view>
+    <view class="players-count">
+      <text class="count-text">{{players.length}}位玩家</text>
+      <button class="add-player-btn" bindtap="onAddPlayer">+</button>
+    </view>
+  </view>
+
+  <!-- 问题展示区域 -->
+  <view class="question-section">
+    <view class="question-card {{showQuestion ? 'show' : ''}}">
+      <view class="question-header">
+        <text class="question-type">{{getQuestionTypeText()}}</text>
+        <text class="question-number">第{{usedQuestions.length}}题</text>
+      </view>
+      <view class="question-content">
+        <text class="question-text">{{currentQuestion}}</text>
+      </view>
+      <view class="question-footer">
+        <text class="question-tip">请诚实回答或完成挑战！</text>
+      </view>
+    </view>
+
+    <!-- 空状态 -->
+    <view class="empty-state" wx:if="{{!showQuestion}}">
+      <view class="empty-icon">❓</view>
+      <text class="empty-text">点击抽题开始游戏</text>
+      <text class="empty-desc">准备好迎接挑战了吗？</text>
+    </view>
+  </view>
+
+  <!-- 操作按钮 -->
+  <view class="action-buttons">
+    <button 
+      class="action-btn draw-btn" 
+      bindtap="onDrawQuestion"
+      wx:if="{{!showQuestion}}"
+    >
+      <text class="btn-icon">🎯</text>
+      <text class="btn-text">抽取题目</text>
+    </button>
+
+    <view class="action-group" wx:if="{{showQuestion}}">
+      <button class="action-btn change-btn" bindtap="onChangeQuestion">
+        <text class="btn-icon">🔄</text>
+        <text class="btn-text">换一题</text>
+      </button>
+      <button class="action-btn next-btn" bindtap="onNextPlayer">
+        <text class="btn-icon">➡️</text>
+        <text class="btn-text">下一玩家</text>
+      </button>
+    </view>
+  </view>
+
+  <!-- 附加功能 -->
+  <view class="extra-actions">
+    <button class="extra-btn custom-btn" bindtap="onCustomQuestion">
+      <text class="btn-icon">✏️</text>
+      <text class="btn-text">自定义题目</text>
+    </button>
+    <button class="extra-btn share-btn" bindtap="onShareQuestion">
+      <text class="btn-icon">📤</text>
+      <text class="btn-text">分享题目</text>
+    </button>
+    <button class="extra-btn restart-btn" bindtap="onRestartGame">
+      <text class="btn-icon">🔄</text>
+      <text class="btn-text">重新开始</text>
+    </button>
+  </view>
+
+  <!-- 游戏统计 -->
+  <view class="stats-section">
+    <view class="stats-card">
+      <view class="stat-item">
+        <text class="stat-value">{{usedQuestions.length}}</text>
+        <text class="stat-label">已使用题目</text>
+      </view>
+      <view class="stat-item">
+        <text class="stat-value">{{getTotalQuestions()}}</text>
+        <text class="stat-label">总题目数</text>
+      </view>
+      <view class="stat-item">
+        <text class="stat-value">{{Math.round(usedQuestions.length / getTotalQuestions() * 100)}}%</text>
+        <text class="stat-label">使用率</text>
+      </view>
+    </view>
+  </view>
+</view>

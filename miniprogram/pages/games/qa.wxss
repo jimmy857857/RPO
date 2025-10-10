@@ -1,0 +1,317 @@
+/* pages/games/qa.wxss */
+.container {
+  padding: 30rpx;
+  background: linear-gradient(135deg, #1ba784 0%, #f3a694 100%);
+  min-height: 100%;
+}
+
+/* 游戏类型选择 */
+.game-type-section {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 20rpx;
+  padding: 25rpx;
+  margin-bottom: 30rpx;
+  backdrop-filter: blur(10rpx);
+}
+
+.type-buttons {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15rpx;
+}
+
+.type-btn {
+  text-align: center;
+  padding: 20rpx 15rpx;
+  background: #F8F9FA;
+  border-radius: 15rpx;
+  transition: all 0.3s ease;
+}
+
+.type-btn.active {
+  background: #1ba784;
+  color: white;
+  transform: scale(1.05);
+}
+
+.type-btn:active {
+  transform: scale(0.95);
+}
+
+.type-icon {
+  display: block;
+  font-size: 32rpx;
+  margin-bottom: 8rpx;
+}
+
+.type-text {
+  display: block;
+  font-size: 22rpx;
+  font-weight: bold;
+}
+
+/* 玩家信息 */
+.player-section {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 20rpx;
+  padding: 20rpx 25rpx;
+  margin-bottom: 30rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  backdrop-filter: blur(10rpx);
+}
+
+.current-player {
+  flex: 1;
+}
+
+.player-label {
+  display: block;
+  font-size: 22rpx;
+  color: #666;
+  margin-bottom: 5rpx;
+}
+
+.player-name {
+  display: block;
+  font-size: 28rpx;
+  font-weight: bold;
+  color: #333;
+}
+
+.players-count {
+  display: flex;
+  align-items: center;
+  gap: 15rpx;
+}
+
+.count-text {
+  font-size: 22rpx;
+  color: #666;
+}
+
+.add-player-btn {
+  background: #1ba784;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 40rpx;
+  height: 40rpx;
+  font-size: 24rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 问题展示区域 */
+.question-section {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 20rpx;
+  padding: 40rpx 30rpx;
+  margin-bottom: 30rpx;
+  min-height: 300rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(10rpx);
+}
+
+.question-card {
+  text-align: center;
+  opacity: 0;
+  transform: translateY(20rpx);
+  transition: all 0.5s ease;
+}
+
+.question-card.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.question-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25rpx;
+}
+
+.question-type {
+  font-size: 24rpx;
+  color: #1ba784;
+  font-weight: bold;
+  padding: 8rpx 15rpx;
+  background: #E8F5E8;
+  border-radius: 15rpx;
+}
+
+.question-number {
+  font-size: 22rpx;
+  color: #666;
+}
+
+.question-content {
+  margin-bottom: 25rpx;
+}
+
+.question-text {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #333;
+  line-height: 1.5;
+  display: block;
+}
+
+.question-footer {
+  margin-top: 20rpx;
+}
+
+.question-tip {
+  font-size: 22rpx;
+  color: #999;
+  font-style: italic;
+}
+
+/* 空状态 */
+.empty-state {
+  text-align: center;
+  opacity: 0.7;
+}
+
+.empty-icon {
+  font-size: 80rpx;
+  margin-bottom: 20rpx;
+  display: block;
+}
+
+.empty-text {
+  display: block;
+  font-size: 28rpx;
+  color: #666;
+  margin-bottom: 10rpx;
+}
+
+.empty-desc {
+  display: block;
+  font-size: 22rpx;
+  color: #999;
+}
+
+/* 操作按钮 */
+.action-buttons {
+  margin-bottom: 30rpx;
+}
+
+.draw-btn {
+  background: linear-gradient(135deg, var(--dopamine-accent), var(--dopamine-highlight));
+  color: white;
+  border: none;
+  border-radius: 50rpx;
+  padding: 25rpx 40rpx;
+  font-size: 28rpx;
+  font-weight: bold;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15rpx;
+  box-shadow: 0 4rpx 15rpx rgba(255, 107, 107, 0.4);
+}
+
+.action-group {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20rpx;
+}
+
+.change-btn, .next-btn {
+  border: none;
+  border-radius: 15rpx;
+  padding: 20rpx;
+  font-size: 26rpx;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10rpx;
+}
+
+.change-btn {
+  background: #FFA500;
+  color: white;
+}
+
+.next-btn {
+  background: #1ba784;
+  color: white;
+}
+
+.draw-btn:active, .change-btn:active, .next-btn:active {
+  opacity: 0.8;
+  transform: scale(0.98);
+}
+
+/* 附加功能 */
+.extra-actions {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15rpx;
+  margin-bottom: 30rpx;
+}
+
+.extra-btn {
+  background: rgba(255, 255, 255, 0.9);
+  border: 1rpx solid #E9ECEF;
+  border-radius: 10rpx;
+  padding: 15rpx 10rpx;
+  font-size: 22rpx;
+  color: #666;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8rpx;
+}
+
+.extra-btn:active {
+  background: #F8F9FA;
+}
+
+.btn-icon {
+  font-size: 24rpx;
+}
+
+.btn-text {
+  font-size: 20rpx;
+}
+
+/* 游戏统计 */
+.stats-section {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 20rpx;
+  padding: 25rpx;
+  backdrop-filter: blur(10rpx);
+}
+
+.stats-card {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20rpx;
+}
+
+.stat-item {
+  text-align: center;
+}
+
+.stat-value {
+  display: block;
+  font-size: 28rpx;
+  font-weight: bold;
+  color: var(--dopamine-primary);
+  margin-bottom: 5rpx;
+}
+
+.stat-label {
+  display: block;
+  font-size: 20rpx;
+  color: #666;
+}

@@ -1,0 +1,30 @@
+{
+  "name": "rpo-miniprogram",
+  "version": "1.0.0",
+  "description": "记账+聚会游戏微信小程序",
+  "main": "app.js",
+  "scripts": {
+    "dev": "npm run build:dev",
+    "build:dev": "npm run compile && npm run preview",
+    "compile": "npx gulp compile",
+    "preview": "npx gulp preview",
+    "lint": "eslint . --ext .js --fix"
+  },
+  "keywords": [
+    "微信小程序",
+    "记账",
+    "聚会游戏"
+  ],
+  "author": "RPO Team",
+  "license": "MIT",
+  "dependencies": {
+    "@vant/weapp": "^1.10.0"
+  },
+  "devDependencies": {
+    "gulp": "^4.0.2",
+    "gulp-clean": "^0.4.0",
+    "gulp-rename": "^2.0.0",
+    "miniprogram-api-typings": "^3.9.0",
+    "eslint": "^8.0.0"
+  }
+}

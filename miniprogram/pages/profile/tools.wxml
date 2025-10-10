@@ -1,0 +1,238 @@
+<!--pages/profile/tools.wxml-->
+<view class="container">
+  <!-- 工具选择 -->
+  <view class="tools-section">
+    <view class="section-header">
+      <text class="section-title" style="color: var(--dopamine-primary);">基础功能</text>
+    </view>
+    <scroll-view class="tools-list" scroll-x="true">
+      <view 
+        class="tool-item {{currentTool === tool.id ? 'active' : ''}}" 
+        wx:for="{{tools}}" 
+        wx:key="id"
+        data-tool="{{tool.id}}"
+        bindtap="onToolChange"
+      >
+        <text class="tool-icon">{{tool.icon}}</text>
+        <text class="tool-name">{{tool.name}}</text>
+      </view>
+    </scroll-view>
+  </view>
+
+  <!-- 计算器 -->
+  <view class="tool-content" wx:if="{{currentTool === 'calculator'}}">
+    <view class="calculator-display">
+      <text class="display-text">{{calculator.display}}</text>
+    </view>
+    
+    <view class="calculator-buttons">
+      <view class="button-row">
+        <button class="calc-btn function" data-value="C" bindtap="onCalculatorInput">C</button>
+        <button class="calc-btn function" data-value="CE" bindtap="onCalculatorInput">CE</button>
+        <button class="calc-btn operator" data-value="/" bindtap="onCalculatorInput">÷</button>
+        <button class="calc-btn operator" data-value="*" bindtap="onCalculatorInput">×</button>
+      </view>
+      
+      <view class="button-row">
+        <button class="calc-btn number" data-value="7" bindtap="onCalculatorInput">7</button>
+        <button class="calc-btn number" data-value="8" bindtap="onCalculatorInput">8</button>
+        <button class="calc-btn number" data-value="9" bindtap="onCalculatorInput">9</button>
+        <button class="calc-btn operator" data-value="-" bindtap="onCalculatorInput">-</button>
+      </view>
+      
+      <view class="button-row">
+        <button class="calc-btn number" data-value="4" bindtap="onCalculatorInput">4</button>
+        <button class="calc-btn number" data-value="5" bindtap="onCalculatorInput">5</button>
+        <button class="calc-btn number" data-value="6" bindtap="onCalculatorInput">6</button>
+        <button class="calc-btn operator" data-value="+" bindtap="onCalculatorInput">+</button>
+      </view>
+      
+      <view class="button-row">
+        <button class="calc-btn number wide" data-value="1" bindtap="onCalculatorInput">1</button>
+        <button class="calc-btn number" data-value="2" bindtap="onCalculatorInput">2</button>
+        <button class="calc-btn number" data-value="3" bindtap="onCalculatorInput">3</button>
+        <button class="calc-btn operator tall" data-value="=" bindtap="onCalculatorInput">=</button>
+      </view>
+      
+      <view class="button-row">
+        <button class="calc-btn number wide" data-value="0" bindtap="onCalculatorInput">0</button>
+        <button class="calc-btn number" data-value="." bindtap="onCalculatorInput">.</button>
+      </view>
+    </view>
+  </view>
+
+  <!-- 汇率换算 -->
+  <view class="tool-content" wx:if="{{currentTool === 'currency'}}">
+    <view class="currency-converter">
+      <view class="conversion-section">
+        <view class="input-group">
+          <text class="input-label">从</text>
+          <picker 
+            class="currency-picker" 
+            range="{{['CNY', 'USD', 'EUR']}}"
+            value="{{0}}"
+          >
+            <text class="picker-text">{{currency.fromCurrency}}</text>
+          </picker>
+          <input 
+            class="amount-input" 
+            type="digit" 
+            placeholder="金额"
+            value="{{currency.amount}}"
+            data-field="amount"
+            bindinput="onCurrencyInput"
+          />
+        </view>
+        
+        <button class="switch-btn" bindtap="onCurrencySwitch">
+          <text class="switch-icon">⇅</text>
+        </button>
+        
+        <view class="input-group">
+          <text class="input-label">到</text>
+          <picker 
+            class="currency-picker" 
+            range="{{['USD', 'CNY', 'EUR']}}"
+            value="{{1}}"
+          >
+            <text class="picker-text">{{currency.toCurrency}}</text>
+          </picker>
+          <input 
+            class="amount-input result" 
+            type="digit" 
+            value="{{currency.result}}"
+            disabled
+          />
+        </view>
+      </view>
+      
+      <view class="rate-info">
+        <text class="rate-text">汇率: 1 {{currency.fromCurrency}} = {{currency.rate}} {{currency.toCurrency}}</text>
+        <text class="update-time">更新于: {{currency.updateTime}}</text>
+      </view>
+      
+      <view class="currency-grid">
+        <view class="currency-item">
+          <text class="currency-symbol">🇨🇳</text>
+          <text class="currency-name">人民币</text>
+          <text class="currency-code">CNY</text>
+        </view>
+        <view class="currency-item">
+          <text class="currency-symbol">🇺🇸</text>
+          <text class="currency-name">美元</text>
+          <text class="currency-code">USD</text>
+        </view>
+        <view class="currency-item">
+          <text class="currency-symbol">🇪🇺</text>
+          <text class="currency-name">欧元</text>
+          <text class="currency-code">EUR</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- AA制分摊 -->
+  <view class="tool-content" wx:if="{{currentTool === 'split'}}">
+    <view class="split-calculator">
+      <view class="input-section">
+        <view class="input-group">
+          <text class="input-label">总金额</text>
+          <input 
+            class="amount-input" 
+            type="digit" 
+            placeholder="0.00"
+            value="{{split.totalAmount}}"
+            data-field="totalAmount"
+            bindinput="onSplitInput"
+          />
+        </view>
+        
+        <view class="input-group">
+          <text class="input-label">人数</text>
+          <input 
+            class="count-input" 
+            type="number" 
+            placeholder="2"
+            value="{{split.peopleCount}}"
+            data-field="peopleCount"
+            bindinput="onSplitInput"
+          />
+        </view>
+        
+        <view class="option-group">
+          <view class="option-item">
+            <text class="option-label">包含税费</text>
+            <switch 
+              checked="{{split.includeTax}}"
+              bindchange="onTaxToggle"
+            />
+          </view>
+          
+          <view class="option-item" wx:if="{{split.includeTax}}">
+            <text class="option-label">税率(%)</text>
+            <input 
+              class="tax-input" 
+              type="number" 
+              placeholder="10"
+              value="{{split.taxRate}}"
+              data-field="taxRate"
+              bindinput="onSplitInput"
+            />
+          </view>
+        </view>
+        
+        <view class="input-group">
+          <text class="input-label">小费金额</text>
+          <input 
+            class="tip-input" 
+            type="digit" 
+            placeholder="0.00"
+            value="{{split.tipAmount}}"
+            bindinput="onTipInput"
+          />
+        </view>
+      </view>
+      
+      <view class="result-section">
+        <view class="result-card">
+          <text class="result-label">每人应付</text>
+          <text class="result-amount">¥{{split.result}}</text>
+          <text class="result-desc">共 {{split.peopleCount}} 人</text>
+        </view>
+        
+        <view class="breakdown">
+          <text class="breakdown-title">费用明细</text>
+          <view class="breakdown-item">
+            <text class="breakdown-label">总金额</text>
+            <text class="breakdown-value">¥{{split.totalAmount ? split.totalAmount : '0.00'}}</text>
+          </view>
+          <view class="breakdown-item" wx:if="{{split.includeTax}}">
+            <text class="breakdown-label">税费</text>
+            <text class="breakdown-value">¥{{split.taxAmount}}</text>
+          </view>
+          <view class="breakdown-item" wx:if="{{split.tipAmount}}">
+            <text class="breakdown-label">小费</text>
+            <text class="breakdown-value">¥{{split.tipAmount}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 其他工具占位 -->
+  <view class="tool-content" wx:if="{{showOtherTools}}">
+    <view class="coming-soon">
+      <text class="soon-icon">🚧</text>
+      <text class="soon-title">开发中</text>
+      <text class="soon-desc">该功能正在紧张开发中，敬请期待！</text>
+    </view>
+  </view>
+
+  <!-- 分享按钮 -->
+  <view class="share-section">
+    <button class="share-btn" bindtap="onShareTool">
+      <text class="share-icon">📤</text>
+      分享工具
+    </button>
+  </view>
+</view>

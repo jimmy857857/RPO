@@ -1,0 +1,361 @@
+/* pages/games/dice.wxss */
+.container {
+  padding: 30rpx;
+  background: linear-gradient(135deg, #1ba784 0%, #f3a694 100%);
+  min-height: 100%;
+}
+
+/* 游戏模式选择 */
+.mode-section {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 20rpx;
+  padding: 25rpx;
+  margin-bottom: 30rpx;
+  backdrop-filter: blur(10rpx);
+}
+
+.mode-buttons {
+  display: flex;
+  gap: 20rpx;
+}
+
+.mode-btn {
+  flex: 1;
+  text-align: center;
+  padding: 20rpx;
+  background: #F8F9FA;
+  border-radius: 15rpx;
+  font-size: 26rpx;
+  color: #666;
+  transition: all 0.3s ease;
+}
+
+.mode-btn.active {
+  background: #1ba784;
+  color: white;
+  font-weight: bold;
+}
+
+/* 骰子区域 */
+.dice-section {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 20rpx;
+  padding: 40rpx;
+  margin-bottom: 30rpx;
+  text-align: center;
+  backdrop-filter: blur(10rpx);
+}
+
+.dice-container {
+  margin-bottom: 40rpx;
+}
+
+.dice {
+  width: 200rpx;
+  height: 200rpx;
+  position: relative;
+  margin: 0 auto;
+  transform-style: preserve-3d;
+  transition: transform 0.5s ease;
+}
+
+.dice.rolling {
+  animation: roll 2s ease-in-out;
+}
+
+@keyframes roll {
+  0% { transform: rotateX(0) rotateY(0); }
+  25% { transform: rotateX(180deg) rotateY(180deg); }
+  50% { transform: rotateX(360deg) rotateY(360deg); }
+  75% { transform: rotateX(540deg) rotateY(540deg); }
+  100% { transform: rotateX(720deg) rotateY(720deg); }
+}
+
+.dice-face {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: white;
+  border: 2rpx solid #333;
+  border-radius: 15rpx;
+  display: none;
+  align-items: center;
+  justify-content: center;
+}
+
+.dice-face.active {
+  display: flex;
+}
+
+.face-1 { transform: translateZ(100rpx); }
+.face-2 { transform: rotateY(90deg) translateZ(100rpx); }
+.face-3 { transform: rotateX(90deg) translateZ(100rpx); }
+.face-4 { transform: rotateX(-90deg) translateZ(100rpx); }
+.face-5 { transform: rotateY(-90deg) translateZ(100rpx); }
+.face-6 { transform: rotateY(180deg) translateZ(100rpx); }
+
+.dot {
+  width: 25rpx;
+  height: 25rpx;
+  background: #333;
+  border-radius: 50%;
+  position: absolute;
+}
+
+.top-left { top: 30rpx; left: 30rpx; }
+.top-right { top: 30rpx; right: 30rpx; }
+.center { top: 50%; left: 50%; transform: translate(-50%, -50%); }
+.bottom-left { bottom: 30rpx; left: 30rpx; }
+.bottom-right { bottom: 30rpx; right: 30rpx; }
+.middle-left { top: 50%; left: 30rpx; transform: translateY(-50%); }
+.middle-right { top: 50%; right: 30rpx; transform: translateY(-50%); }
+
+.roll-btn {
+  background: linear-gradient(135deg, var(--dopamine-accent), var(--dopamine-highlight));
+  color: white;
+  border: none;
+  border-radius: 50rpx;
+  padding: 25rpx 60rpx;
+  font-size: 32rpx;
+  font-weight: bold;
+  box-shadow: 0 4rpx 15rpx rgba(255, 107, 107, 0.4);
+}
+
+.roll-btn.disabled {
+  background: #CCC;
+  box-shadow: none;
+}
+
+.roll-btn:active:not(.disabled) {
+  transform: scale(0.95);
+}
+
+/* 玩家信息 */
+.players-section {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 20rpx;
+  padding: 25rpx;
+  margin-bottom: 30rpx;
+  backdrop-filter: blur(10rpx);
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20rpx;
+}
+
+.section-title {
+  font-size: 28rpx;
+  font-weight: bold;
+  color: #333;
+}
+
+.add-player-btn {
+  background: #1ba784;
+  color: white;
+  border: none;
+  border-radius: 8rpx;
+  padding: 10rpx 15rpx;
+  font-size: 22rpx;
+}
+
+.players-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15rpx;
+}
+
+.player-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20rpx;
+  background: #F8F9FA;
+  border-radius: 10rpx;
+  transition: all 0.3s ease;
+}
+
+.player-item.active {
+  background: #E8F5E8;
+  border-left: 4rpx solid #1ba784;
+}
+
+.player-info {
+  flex: 1;
+}
+
+.player-name {
+  display: block;
+  font-size: 26rpx;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 5rpx;
+}
+
+.player-score {
+  display: block;
+  font-size: 22rpx;
+  color: #666;
+}
+
+.player-turn {
+  font-size: 22rpx;
+  color: var(--dopamine-primary);
+  font-weight: bold;
+}
+
+/* 结果展示 */
+.result-section {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+  z-index: 1000;
+}
+
+.result-section.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+.result-card {
+  background: white;
+  border-radius: 30rpx;
+  padding: 40rpx;
+  width: 80%;
+  max-width: 400rpx;
+  text-align: center;
+  transform: scale(0.8);
+  transition: transform 0.3s ease;
+}
+
+.result-section.show .result-card {
+  transform: scale(1);
+}
+
+.result-header {
+  margin-bottom: 30rpx;
+}
+
+.result-title {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #333;
+}
+
+.result-content {
+  margin-bottom: 40rpx;
+}
+
+.result-value {
+  display: block;
+  font-size: 72rpx;
+  font-weight: bold;
+  color: var(--dopamine-primary);
+  margin-bottom: 10rpx;
+}
+
+.result-desc {
+  display: block;
+  font-size: 26rpx;
+  color: #666;
+}
+
+.result-actions {
+  display: flex;
+  gap: 20rpx;
+}
+
+.share-btn, .close-btn {
+  flex: 1;
+  border: none;
+  border-radius: 15rpx;
+  padding: 20rpx;
+  font-size: 28rpx;
+  font-weight: bold;
+}
+
+.share-btn {
+  background: var(--dopamine-primary);
+  color: white;
+}
+
+.close-btn {
+  background: #F8F9FA;
+  color: #666;
+}
+
+/* 历史记录 */
+.history-section {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 20rpx;
+  padding: 25rpx;
+  margin-bottom: 30rpx;
+  backdrop-filter: blur(10rpx);
+}
+
+.clear-btn {
+  background: var(--dopamine-accent);
+  color: white;
+  border: none;
+  border-radius: 8rpx;
+  padding: 10rpx 15rpx;
+  font-size: 22rpx;
+}
+
+.history-list {
+  max-height: 300rpx;
+  overflow-y: auto;
+}
+
+.history-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15rpx 0;
+  border-bottom: 1rpx solid #F0F0F0;
+}
+
+.history-item:last-child {
+  border-bottom: none;
+}
+
+.history-value {
+  font-size: 28rpx;
+  font-weight: bold;
+  color: #333;
+}
+
+.history-time {
+  font-size: 22rpx;
+  color: #666;
+}
+
+/* 操作按钮 */
+.action-section {
+  text-align: center;
+}
+
+.restart-btn {
+  background: #F8F9FA;
+  color: #666;
+  border: none;
+  border-radius: 15rpx;
+  padding: 20rpx 40rpx;
+  font-size: 28rpx;
+  font-weight: bold;
+}
+
+.restart-btn:active {
+  background: #E9ECEF;
+}

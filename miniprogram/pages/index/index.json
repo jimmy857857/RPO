@@ -1,0 +1,10 @@
+{
+  "navigationBarTitleText": "基础功能",
+  "navigationBarBackgroundColor": "#1ba784",
+  "navigationBarTextStyle": "white",
+  "backgroundColor": "#F8F9FA",
+  "backgroundTextStyle": "light",
+  "usingComponents": {
+    "cloud-tip-modal": "/components/cloudTipModal/index"
+  }
+}

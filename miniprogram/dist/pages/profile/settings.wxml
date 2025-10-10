@@ -1,0 +1,128 @@
+<!--pages/profile/settings.wxml-->
+<view class="container">
+  <!-- 用户信息 -->
+  <view class="user-section">
+    <view class="user-info">
+      <image class="user-avatar" src="{{userInfo.avatarUrl || '/images/default-avatar.png'}}"></image>
+      <view class="user-details">
+        <text class="user-name">{{userInfo.nickName || '未登录用户'}}</text>
+        <text class="user-id">ID: {{openid || '未登录'}}</text>
+        <text class="user-since">注册时间: {{registerTime}}</text>
+      </view>
+    </view>
+    
+    <button class="switch-user-btn" bindtap="onSwitchUser">切换用户</button>
+  </view>
+
+
+
+  <!-- 记账提醒 -->
+  <view class="reminder-section">
+    <view class="section-header">
+      <text class="section-title">记账提醒</text>
+    </view>
+    
+    <view class="setting-list">
+      <view class="setting-item">
+        <view class="setting-info">
+          <text class="setting-title">每日记账提醒</text>
+          <text class="setting-desc">每日提醒记账，养成良好的记账习惯</text>
+        </view>
+        <switch 
+          checked="{{reminderEnabled}}" 
+          bindchange="onReminderToggle"
+        />
+      </view>
+    </view>
+  </view>
+
+
+
+  <!-- 数据管理 -->
+  <view class="data-section">
+    <view class="section-header">
+      <text class="section-title">数据管理</text>
+    </view>
+    
+    <view class="data-actions">
+      <button class="data-btn export-btn" bindtap="onExportData">
+        <text class="btn-icon">📤</text>
+        <text class="btn-text">导出数据</text>
+        <text class="btn-desc">导出记账数据为Excel</text>
+      </button>
+      
+      <button class="data-btn backup-btn" bindtap="onBackupData">
+        <text class="btn-icon">💾</text>
+        <text class="btn-text">备份数据</text>
+        <text class="btn-desc">备份到云端</text>
+      </button>
+      
+      <button class="data-btn restore-btn" bindtap="onRestoreData">
+        <text class="btn-icon">📥</text>
+        <text class="btn-text">恢复数据</text>
+        <text class="btn-desc">从备份恢复</text>
+      </button>
+      
+      <button class="data-btn clear-btn" bindtap="onClearData">
+        <text class="btn-icon">🗑️</text>
+        <text class="btn-text">清空数据</text>
+        <text class="btn-desc">删除所有数据</text>
+      </button>
+    </view>
+  </view>
+
+  <!-- 关于我们 -->
+  <view class="about-section">
+    <view class="section-header">
+      <text class="section-title">关于我们</text>
+    </view>
+    
+    <view class="about-content">
+      <text class="app-name">记账+聚会游戏</text>
+      <text class="app-version">版本 {{appVersion}}</text>
+      <text class="app-desc">一款融合轻量化记账管理与即时性聚会游戏的双场景微信小程序</text>
+      
+      <view class="about-links">
+        <button class="link-btn" bindtap="onUserAgreement">用户协议</button>
+        <button class="link-btn" bindtap="onPrivacyPolicy">隐私政策</button>
+        <button class="link-btn" bindtap="onFeedback">意见反馈</button>
+        <button class="link-btn" bindtap="onCheckUpdate">检查更新</button>
+      </view>
+    </view>
+  </view>
+
+  <!-- 退出登录 -->
+  <view class="logout-section">
+    <button class="logout-btn" bindtap="onLogout">退出登录</button>
+  </view>
+
+  <!-- 数据备份弹窗 -->
+  <view class="backup-modal" wx:if="{{showBackupModal}}">
+    <view class="modal-mask" bindtap="onCloseBackupModal"></view>
+    <view class="modal-content">
+      <view class="modal-header">
+        <text class="modal-title">数据备份</text>
+      </view>
+      
+      <view class="modal-body">
+        <text class="modal-desc">选择备份方式：</text>
+        
+        <view class="backup-options">
+          <button class="backup-option" bindtap="onBackupToCloud">
+            <text class="option-icon">☁️</text>
+            <text class="option-title">备份到云端</text>
+            <text class="option-desc">安全可靠，多设备同步</text>
+          </button>
+          
+          <button class="backup-option" bindtap="onBackupToLocal">
+            <text class="option-icon">📱</text>
+            <text class="option-title">备份到本地</text>
+            <text class="option-desc">导出为文件保存</text>
+          </button>
+        </view>
+        
+        <button class="modal-close-btn" bindtap="onCloseBackupModal">取消</button>
+      </view>
+    </view>
+  </view>
+</view>

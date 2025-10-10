@@ -1,0 +1,82 @@
+<!-- 隐私政策页面 -->
+<view class="privacy-container">
+  <view class="header">
+    <text class="title">隐私政策</text>
+    <text class="subtitle">最后更新日期：2024年12月</text>
+  </view>
+  
+  <scroll-view class="content" scroll-y>
+    <view class="section">
+      <text class="section-title">1. 信息收集与使用</text>
+      <text class="section-content">
+        我们非常重视您的隐私保护。在您使用本小程序时，我们可能会收集以下信息：
+        \n• 用户昵称和头像（用于个性化展示）
+        \n• 记账数据（仅存储在您的设备本地）
+        \n• 游戏使用记录（用于功能优化）
+        \n\n我们承诺不会将您的个人信息用于任何商业营销目的。
+      </text>
+    </view>
+    
+    <view class="section">
+      <text class="section-title">2. 数据存储与安全</text>
+      <text class="section-content">
+        您的数据主要存储在本地设备中，部分功能可能使用微信云开发服务进行数据同步。
+        \n\n我们采用行业标准的安全措施来保护您的数据，包括：
+        \n• 数据加密传输
+        \n• 访问权限控制
+        \n• 定期安全审计
+      </text>
+    </view>
+    
+    <view class="section">
+      <text class="section-title">3. 数据共享与披露</text>
+      <text class="section-content">
+        我们不会将您的个人信息出售、交易或转让给第三方，除非：
+        \n• 获得您的明确同意
+        \n• 法律要求或政府机关要求
+        \n• 保护我们的合法权益
+      </text>
+    </view>
+    
+    <view class="section">
+      <text class="section-title">4. 您的权利</text>
+      <text class="section-content">
+        您有权：
+        \n• 访问、更正或删除您的个人信息
+        \n• 撤回已同意的授权
+        \n• 注销账户
+        \n• 投诉或咨询隐私相关问题
+        \n\n如需行使上述权利，请联系我们。
+      </text>
+    </view>
+    
+    <view class="section">
+      <text class="section-title">5. 未成年人保护</text>
+      <text class="section-content">
+        我们非常重视未成年人的隐私保护。如果您是未成年人，请在法定监护人陪同下使用本小程序。
+        \n\n我们不会在知情的情况下收集未成年人的个人信息。
+      </text>
+    </view>
+    
+    <view class="section">
+      <text class="section-title">6. 政策更新</text>
+      <text class="section-content">
+        我们可能会不时更新本隐私政策。更新后的政策将在小程序内公布，请定期查看。
+        \n\n继续使用本小程序即表示您接受更新后的政策。
+      </text>
+    </view>
+    
+    <view class="section">
+      <text class="section-title">7. 联系我们</text>
+      <text class="section-content">
+        如果您对本隐私政策有任何疑问、意见或建议，请通过以下方式联系我们：
+        \n\n邮箱：privacy@example.com
+        \n客服时间：工作日 9:00-18:00
+      </text>
+    </view>
+  </scroll-view>
+  
+  <view class="footer">
+    <button class="agree-btn" bindtap="onAgree">同意并继续</button>
+  </view>
+</view>

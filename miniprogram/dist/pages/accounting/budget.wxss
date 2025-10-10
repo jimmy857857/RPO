@@ -1,0 +1,530 @@
+/* pages/accounting/budget.wxss */
+.container {
+  padding: 20rpx;
+  background: #F8F9FA;
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+
+/* 预算概览图表 */
+.budget-overview {
+  background: white;
+  border-radius: 20rpx;
+  padding: 30rpx;
+  margin-bottom: 20rpx;
+  box-shadow: 0 2rpx 10rpx rgba(0, 0, 0, 0.1);
+}
+
+.section-header {
+  margin-bottom: 20rpx;
+}
+
+.section-title {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #333;
+  display: block;
+}
+
+.section-desc {
+  font-size: 24rpx;
+  color: #666;
+  margin-top: 5rpx;
+  display: block;
+}
+
+
+
+.budget-stats {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15rpx;
+  margin-top: 20rpx;
+}
+
+.stat-item {
+  background: #F8F9FA;
+  border-radius: 15rpx;
+  padding: 20rpx;
+  text-align: center;
+}
+
+.stat-label {
+  display: block;
+  font-size: 24rpx;
+  color: #666;
+  margin-bottom: 8rpx;
+}
+
+.stat-value {
+  display: block;
+  font-size: 28rpx;
+  font-weight: bold;
+}
+
+.stat-value.total {
+  color: #1ba784;
+}
+
+.stat-value.used {
+  color: var(--dopamine-accent);
+}
+
+.stat-value.remaining {
+  color: var(--dopamine-secondary);
+}
+
+.stat-value.rate {
+  color: var(--dopamine-highlight);
+}
+
+/* 总预算设置 */
+.total-budget-section {
+  background: white;
+  border-radius: 20rpx;
+  padding: 30rpx;
+  margin-bottom: 20rpx;
+  box-shadow: 0 2rpx 10rpx rgba(0, 0, 0, 0.1);
+}
+
+.budget-input-section {
+  margin-bottom: 20rpx;
+}
+
+.input-group {
+  margin-bottom: 20rpx;
+}
+
+.input-label {
+  display: block;
+  font-size: 26rpx;
+  color: #333;
+  margin-bottom: 15rpx;
+  font-weight: bold;
+}
+
+.amount-input {
+  display: flex;
+  align-items: center;
+  background: #F8F9FA;
+  border-radius: 15rpx;
+  padding: 20rpx;
+  border: 2rpx solid #E9ECEF;
+}
+
+.currency-symbol {
+  font-size: 32rpx;
+  color: #333;
+  margin-right: 15rpx;
+  font-weight: bold;
+}
+
+.amount-field {
+  flex: 1;
+  font-size: 32rpx;
+  color: #333;
+  border: none;
+  background: transparent;
+}
+
+.budget-status {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15rpx 0;
+}
+
+.status-label {
+  font-size: 26rpx;
+  color: #333;
+  font-weight: bold;
+}
+
+.status-value {
+  font-size: 26rpx;
+  font-weight: bold;
+  padding: 8rpx 16rpx;
+  border-radius: 20rpx;
+}
+
+.status-value.normal {
+  background: #D4EDDA;
+  color: #155724;
+}
+
+.status-value.warning {
+  background: #FFF3CD;
+  color: #856404;
+}
+
+.status-value.danger {
+  background: #F8D7DA;
+  color: #721C24;
+}
+
+.budget-progress {
+  margin-top: 20rpx;
+}
+
+.progress-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15rpx;
+}
+
+.progress-label {
+  font-size: 26rpx;
+  color: #333;
+  font-weight: bold;
+}
+
+.progress-value {
+  font-size: 26rpx;
+  color: #1ba784;
+  font-weight: bold;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 12rpx;
+  background: #E9ECEF;
+  border-radius: 6rpx;
+  overflow: hidden;
+  margin-bottom: 15rpx;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #1ba784, #f3a694);
+  border-radius: 6rpx;
+  transition: width 0.3s ease;
+}
+
+.progress-detail {
+  display: flex;
+  justify-content: space-between;
+}
+
+.detail-text {
+  font-size: 22rpx;
+  color: #666;
+}
+
+/* 分类预算设置 */
+.category-budget-section {
+  background: white;
+  border-radius: 20rpx;
+  padding: 30rpx;
+  margin-bottom: 20rpx;
+  box-shadow: 0 2rpx 10rpx rgba(0, 0, 0, 0.1);
+}
+
+.category-list {
+  margin-top: 20rpx;
+}
+
+.category-item {
+  display: flex;
+  flex-direction: column;
+  padding: 25rpx;
+  border-bottom: 1rpx solid #F0F0F0;
+  margin-bottom: 15rpx;
+}
+
+.category-item:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+}
+
+.category-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15rpx;
+}
+
+.category-icon {
+  font-size: 32rpx;
+  margin-right: 15rpx;
+}
+
+.category-name {
+  font-size: 28rpx;
+  font-weight: bold;
+  color: #333;
+  flex: 1;
+}
+
+.category-amount {
+  font-size: 24rpx;
+  color: #666;
+}
+
+.budget-control {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15rpx;
+}
+
+.budget-input {
+  flex: 1;
+  background: #F8F9FA;
+  border: 2rpx solid #E9ECEF;
+  border-radius: 10rpx;
+  padding: 15rpx;
+  font-size: 26rpx;
+  margin-right: 10rpx;
+}
+
+.budget-unit {
+  font-size: 24rpx;
+  color: #666;
+}
+
+.category-progress {
+  display: flex;
+  align-items: center;
+}
+
+.progress-bar-mini {
+  flex: 1;
+  height: 6rpx;
+  background: #E9ECEF;
+  border-radius: 3rpx;
+  overflow: hidden;
+  margin-right: 15rpx;
+}
+
+.progress-fill-mini {
+  height: 100%;
+  background: linear-gradient(90deg, var(--dopamine-accent), var(--dopamine-highlight));
+  border-radius: 3rpx;
+  transition: width 0.3s ease;
+}
+
+.progress-text {
+  font-size: 20rpx;
+  color: #666;
+  min-width: 40rpx;
+}
+
+/* 预算提醒设置 */
+.reminder-section {
+  background: white;
+  border-radius: 20rpx;
+  padding: 30rpx;
+  margin-bottom: 20rpx;
+  box-shadow: 0 2rpx 10rpx rgba(0, 0, 0, 0.1);
+}
+
+.reminder-list {
+  margin-top: 20rpx;
+}
+
+.reminder-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20rpx 0;
+  border-bottom: 1rpx solid #F0F0F0;
+}
+
+.reminder-item:last-child {
+  border-bottom: none;
+}
+
+.reminder-info {
+  flex: 1;
+}
+
+.reminder-title {
+  display: block;
+  font-size: 26rpx;
+  color: #333;
+  font-weight: bold;
+  margin-bottom: 5rpx;
+}
+
+.reminder-desc {
+  display: block;
+  font-size: 22rpx;
+  color: #666;
+}
+
+.reminder-settings {
+  width: 100%;
+  padding: 15rpx 0;
+}
+
+.setting-label {
+  display: block;
+  font-size: 24rpx;
+  color: #333;
+  margin-bottom: 10rpx;
+}
+
+.threshold-slider {
+  width: 100%;
+  margin-bottom: 10rpx;
+}
+
+.threshold-value {
+  display: block;
+  font-size: 22rpx;
+  color: #666;
+  text-align: center;
+}
+
+/* 预算历史 */
+.history-section {
+  background: white;
+  border-radius: 20rpx;
+  padding: 30rpx;
+  margin-bottom: 20rpx;
+  box-shadow: 0 2rpx 10rpx rgba(0, 0, 0, 0.1);
+}
+
+.history-list {
+  margin-top: 20rpx;
+}
+
+.history-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20rpx;
+  border-bottom: 1rpx solid #F0F0F0;
+  margin-bottom: 10rpx;
+}
+
+.history-item:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+}
+
+.history-info {
+  flex: 1;
+}
+
+.history-month {
+  display: block;
+  font-size: 26rpx;
+  color: #333;
+  font-weight: bold;
+  margin-bottom: 5rpx;
+}
+
+.history-amount {
+  display: block;
+  font-size: 22rpx;
+  color: #666;
+}
+
+.history-status {
+  text-align: right;
+}
+
+.status-text {
+  display: block;
+  font-size: 22rpx;
+  padding: 4rpx 12rpx;
+  border-radius: 12rpx;
+  margin-bottom: 5rpx;
+}
+
+.status-text.normal {
+  background: #D4EDDA;
+  color: #155724;
+}
+
+.status-text.warning {
+  background: #FFF3CD;
+  color: #856404;
+}
+
+.status-text.danger {
+  background: #F8D7DA;
+  color: #721C24;
+}
+
+.status-detail {
+  display: block;
+  font-size: 20rpx;
+  color: #666;
+}
+
+.history-btn {
+  background: #F8F9FA;
+  color: #666;
+  border: 1rpx solid #E9ECEF;
+  border-radius: 10rpx;
+  padding: 12rpx 20rpx;
+  font-size: 24rpx;
+}
+
+/* 操作按钮 */
+.action-section {
+  display: flex;
+  gap: 15rpx;
+  margin-bottom: 20rpx;
+}
+
+.action-btn {
+  flex: 1;
+  border: none;
+  border-radius: 15rpx;
+  padding: 25rpx;
+  font-size: 28rpx;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.save-btn {
+  background: #1ba784;
+  color: white;
+}
+
+.reset-btn {
+  background: #F8F9FA;
+  color: #666;
+}
+
+.auto-btn {
+  background: var(--dopamine-accent);
+  color: white;
+}
+
+.action-btn:active {
+  opacity: 0.8;
+}
+
+.btn-icon {
+  font-size: 32rpx;
+  margin-right: 10rpx;
+}
+
+/* 响应式适配 */
+@media (max-width: 375px) {
+  .container {
+    padding: 15rpx;
+  }
+  
+  .budget-stats {
+    grid-template-columns: 1fr;
+    gap: 10rpx;
+  }
+  
+  .action-section {
+    flex-direction: column;
+    gap: 10rpx;
+  }
+}
+
+@media (min-width: 750px) {
+  .budget-stats {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}

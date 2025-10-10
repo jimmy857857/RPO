@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "意见反馈",
+  "navigationBarBackgroundColor": "#1ba784",
+  "navigationBarTextStyle": "white",
+  "backgroundColor": "#F8F9FA",
+  "backgroundTextStyle": "light",
+  "enablePullDownRefresh": false
+}

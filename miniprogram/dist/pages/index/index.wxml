@@ -1,0 +1,86 @@
+<!--index.wxml-->
+<view class="container">
+  <!-- 顶部预算信息 -->
+  <view class="budget-card">
+    <view class="budget-header">
+      <text class="budget-title">本月预算</text>
+      <text class="budget-date">{{currentMonth}}</text>
+    </view>
+    <view class="budget-content">
+      <view class="budget-item">
+        <text class="budget-label">已支出</text>
+        <text class="budget-value expense">{{formattedExpense}}元</text>
+      </view>
+      <view class="budget-item">
+        <text class="budget-label">剩余</text>
+        <text class="budget-value remaining">{{formattedRemaining}}元</text>
+      </view>
+      <view class="budget-item">
+        <text class="budget-label">预算</text>
+        <text class="budget-value total">{{formattedBudget}}元</text>
+      </view>
+    </view>
+    <view class="budget-progress">
+      <view class="progress-bar">
+        <view class="progress-fill" style="width: {{budgetProgress}}%"></view>
+      </view>
+      <text class="progress-text">{{budgetProgress}}%</text>
+    </view>
+  </view>
+
+
+
+  <!-- 功能模块 -->
+  <view class="module-section">
+    <view class="section-title">记账管理</view>
+    <view class="module-grid">
+      <view class="module-item" bindtap="navigateToAccounting">
+        <view class="module-icon accounting">💰</view>
+        <text class="module-text">快速记账</text>
+      </view>
+      <view class="module-item" bindtap="navigateToStatistics">
+        <view class="module-icon statistics">📊</view>
+        <text class="module-text">数据统计</text>
+      </view>
+      <view class="module-item" bindtap="navigateToBudget">
+        <view class="module-icon budget">🎯</view>
+        <text class="module-text">预算设置</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="module-section">
+    <view class="section-title">聚会游戏</view>
+    <view class="module-grid">
+      <view class="module-item" bindtap="navigateToWheel">
+        <view class="module-icon wheel">🎡</view>
+        <text class="module-text">转盘游戏</text>
+      </view>
+      <view class="module-item" bindtap="navigateToQA">
+        <view class="module-icon qa">❓</view>
+        <text class="module-text">真心话</text>
+      </view>
+      <view class="module-item" bindtap="navigateToDice">
+        <view class="module-icon dice">🎲</view>
+        <text class="module-text">骰子游戏</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 最近记录 -->
+  <view class="recent-section" wx:if="{{recentRecords.length > 0}}">
+    <view class="section-title">最近记录</view>
+    <view class="record-list">
+      <view class="record-item" wx:for="{{recentRecords}}" wx:key="id">
+        <view class="record-left">
+          <view class="record-category {{item.type}}">{{item.category}}</view>
+          <view class="record-note">{{item.note || '无备注'}}</view>
+        </view>
+        <view class="record-right">
+          <view class="record-amount {{item.type}}">{{item.type === 'expense' ? '-' : '+'}}{{item.amount}}</view>
+          <view class="record-time">{{item.time}}</view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

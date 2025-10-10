@@ -1,0 +1,220 @@
+<!--pages/accounting/statistics.wxml-->
+<view class="container">
+  <!-- 时间筛选器 -->
+  <view class="filter-section">
+    <view class="filter-buttons">
+      <view 
+        class="filter-btn {{timeRange === 'day' ? 'active' : ''}}" 
+        data-range="day"
+        bindtap="onTimeRangeChange"
+      >
+        今日
+      </view>
+      <view 
+        class="filter-btn {{timeRange === 'week' ? 'active' : ''}}" 
+        data-range="week"
+        bindtap="onTimeRangeChange"
+      >
+        本周
+      </view>
+      <view 
+        class="filter-btn {{timeRange === 'month' ? 'active' : ''}}" 
+        data-range="month"
+        bindtap="onTimeRangeChange"
+      >
+        本月
+      </view>
+      <view 
+        class="filter-btn {{timeRange === 'year' ? 'active' : ''}}" 
+        data-range="year"
+        bindtap="onTimeRangeChange"
+      >
+        今年
+      </view>
+    </view>
+    
+    <picker 
+      class="date-picker" 
+      mode="date" 
+      fields="month"
+      value="{{customDate}}"
+      bindchange="onCustomDateChange"
+    >
+      <text class="date-text">自定义</text>
+    </picker>
+  </view>
+
+  <!-- 关键指标 -->
+  <view class="metrics-section">
+    <view class="metric-card income-card">
+      <text class="metric-label">总收入</text>
+      <text class="metric-value">¥{{formattedTotalIncome}}</text>
+      <text class="metric-change">较上月 {{incomeChange || 0}}%</text>
+    </view>
+    
+    <view class="metric-card expense-card">
+      <text class="metric-label">总支出</text>
+      <text class="metric-value">¥{{formattedTotalExpense}}</text>
+      <text class="metric-change">较上月 {{expenseChange || 0}}%</text>
+    </view>
+    
+    <view class="metric-card balance-card">
+      <text class="metric-label">结余</text>
+      <text class="metric-value {{balanceClass}}">
+        ¥{{formattedBalance}}
+      </text>
+      <text class="metric-change">预算剩余 {{budgetRemaining || 0}}%</text>
+    </view>
+  </view>
+
+  <!-- 支出分类饼图 -->
+  <view class="chart-section">
+    <view class="section-header">
+      <text class="section-title">支出分类占比</text>
+      <button class="export-btn" bindtap="onExportData">导出数据</button>
+    </view>
+    
+    <view class="chart-container">
+      <canvas class="pie-chart" type="2d" id="pieChart" style="width: 100%; height: 100%;"></canvas>
+    </view>
+    
+    <view class="legend-container">
+      <view 
+        class="legend-item" 
+        wx:for="{{chartData.pieChart}}" 
+        wx:key="name"
+      >
+        <view class="legend-color" style="background-color: {{item.color}}"></view>
+        <text class="legend-name">{{item.name}}</text>
+        <text class="legend-percent">{{item.percentage}}%</text>
+        <text class="legend-amount">¥{{item.value}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 收支趋势图 -->
+  <view class="trend-section">
+    <view class="section-header">
+      <text class="section-title">收支趋势</text>
+      <view class="trend-toggle">
+        <text 
+          class="toggle-item {{trendType === 'daily' ? 'active' : ''}}" 
+          data-type="daily"
+          bindtap="onTrendTypeChange"
+        >日度</text>
+        <text 
+          class="toggle-item {{trendType === 'monthly' ? 'active' : ''}}" 
+          data-type="monthly"
+          bindtap="onTrendTypeChange"
+        >月度</text>
+      </view>
+    </view>
+    
+    <view class="chart-container">
+      <canvas class="bar-chart" type="2d" id="barChart" style="width: 100%; height: 400rpx;"></canvas>
+    </view>
+  </view>
+
+  <!-- 详细数据 -->
+  <view class="detail-section">
+    <view class="section-header">
+      <text class="section-title">详细数据</text>
+      <button class="detail-btn" bindtap="onToggleDetail">
+        {{showDetail ? '收起' : '展开'}}
+      </button>
+    </view>
+    
+    <view class="detail-content" wx:if="{{showDetail}}">
+      <!-- 收入明细 -->
+      <view class="income-detail">
+        <view class="detail-header">
+          <text class="detail-title">收入明细</text>
+          <text class="detail-total">合计: ¥{{formattedTotalIncome}}</text>
+        </view>
+        <view class="detail-list">
+          <view 
+            class="detail-item" 
+            wx:for="{{statistics.categoryExpense}}" 
+            wx:key="category"
+          >
+            <text class="item-category">{{item.category}}</text>
+            <text class="item-amount">¥{{item.amount}}</text>
+            <text class="item-percent">{{item.percentage}}%</text>
+          </view>
+        </view>
+      </view>
+      
+      <!-- 支出明细 -->
+      <view class="expense-detail">
+        <view class="detail-header">
+          <text class="detail-title">支出明细</text>
+          <text class="detail-total">合计: ¥{{formattedTotalExpense}}</text>
+        </view>
+        <view class="detail-list">
+          <view 
+            class="detail-item" 
+            wx:for="{{statistics.categoryExpense}}" 
+            wx:key="category"
+          >
+            <text class="item-category">{{item.category}}</text>
+            <text class="item-amount">¥{{item.amount}}</text>
+            <text class="item-percent">{{item.percentage}}%</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 预算进度 -->
+  <view class="budget-section">
+    <view class="section-header">
+      <text class="section-title">预算进度</text>
+      <text class="budget-status {{budgetStatusClass}}">
+        {{budgetStatusText}}
+      </text>
+    </view>
+    
+    <view class="budget-progress">
+      <view class="progress-bar">
+        <view 
+          class="progress-fill" 
+          style="width: {{budgetProgress || 0}}%"
+        ></view>
+      </view>
+      <view class="progress-text">
+        <text class="progress-value">{{budgetProgress || 0}}%</text>
+        <text class="progress-desc">已用 ¥{{formattedBudgetUsed}} / 预算 ¥{{formattedBudgetTotal}}</text>
+      </view>
+    </view>
+    
+    <view class="category-budgets">
+      <view 
+        class="category-budget" 
+        wx:for="{{categoryBudgets}}" 
+        wx:key="category"
+      >
+        <text class="budget-category">{{item.category}}</text>
+        <view class="budget-progress-mini">
+          <view 
+            class="progress-fill-mini" 
+            style="width: {{item.progress}}%"
+          ></view>
+        </view>
+        <text class="budget-text">¥{{item.used}}/¥{{item.total}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 操作按钮 -->
+  <view class="action-section">
+    <button class="action-btn refresh-btn" bindtap="onRefreshData">
+      <text class="btn-icon">🔄</text>
+      刷新数据
+    </button>
+    
+    <button class="action-btn share-btn" bindtap="onShareReport">
+      <text class="btn-icon">📤</text>
+      分享报告
+    </button>
+  </view>
+</view>

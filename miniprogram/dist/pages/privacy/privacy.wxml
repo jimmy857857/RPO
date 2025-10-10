@@ -1,0 +1,19 @@
+<!--pages/privacy/privacy.wxml-->
+<view class="privacy-container">
+  <!-- 标题 -->
+  <view class="privacy-header">
+    <text class="privacy-title">隐私政策</text>
+    <text class="privacy-subtitle">请仔细阅读并同意以下内容</text>
+  </view>
+
+  <!-- 内容区域 -->
+  <scroll-view class="privacy-content" scroll-y>
+    <text class="privacy-text">{{privacyContent}}</text>
+  </scroll-view>
+
+  <!-- 操作按钮 -->
+  <view class="privacy-actions">
+    <button class="agree-btn" bindtap="onAgree">同意并继续</button>
+    <button class="disagree-btn" bindtap="onDisagree">不同意</button>
+  </view>
+</view>

@@ -1,0 +1,260 @@
+/* index.wxss */
+.container {
+  padding: 20rpx;
+  background: linear-gradient(135deg, #1ba784 0%, #f3a694 100%);
+  min-height: 100%;
+}
+
+/* 预算卡片 */
+.budget-card {
+  background: linear-gradient(135deg, #1ba784, #f3a694);
+  border-radius: 20rpx;
+  padding: 30rpx;
+  margin-bottom: 30rpx;
+  color: white;
+  box-shadow: 0 4rpx 20rpx rgba(27, 167, 132, 0.4);
+}
+
+.budget-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20rpx;
+}
+
+.budget-title {
+  font-size: 36rpx;
+  font-weight: bold;
+}
+
+.budget-date {
+  font-size: 28rpx;
+  opacity: 0.9;
+}
+
+.budget-content {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 30rpx;
+}
+
+.budget-item {
+  text-align: center;
+}
+
+.budget-label {
+  display: block;
+  font-size: 24rpx;
+  opacity: 0.8;
+  margin-bottom: 10rpx;
+}
+
+.budget-value {
+  display: block;
+  font-size: 32rpx;
+  font-weight: bold;
+}
+
+.budget-value.expense {
+  color: #f3a694;
+}
+
+.budget-value.remaining {
+  color: #1ba784;
+}
+
+.budget-value.total {
+  color: #FFFFFF;
+}
+
+.budget-progress {
+  display: flex;
+  align-items: center;
+}
+
+.progress-bar {
+  flex: 1;
+  height: 8rpx;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 4rpx;
+  margin-right: 20rpx;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: #FFFFFF;
+  border-radius: 4rpx;
+  transition: width 0.3s ease;
+}
+
+.progress-text {
+  font-size: 24rpx;
+  opacity: 0.8;
+}
+
+/* 快速记账按钮 */
+.quick-record {
+  margin-bottom: 40rpx;
+}
+
+.record-btn {
+  background: linear-gradient(135deg, #1ba784, #f3a694);
+  border: none;
+  border-radius: 50rpx;
+  padding: 30rpx 40rpx;
+  color: white;
+  font-size: 32rpx;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4rpx 20rpx rgba(27, 167, 132, 0.4);
+}
+
+.btn-icon {
+  font-size: 40rpx;
+  margin-right: 15rpx;
+}
+
+.btn-text {
+  font-size: 32rpx;
+}
+
+/* 模块区域 */
+.module-section {
+  margin-bottom: 40rpx;
+}
+
+.section-title {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 25rpx;
+  padding-left: 10rpx;
+  border-left: 6rpx solid #1ba784;
+}
+
+.module-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20rpx;
+}
+
+.module-item {
+  background: white;
+  border-radius: 15rpx;
+  padding: 30rpx 20rpx;
+  text-align: center;
+  box-shadow: 0 2rpx 10rpx rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease;
+}
+
+.module-item:active {
+  transform: scale(0.95);
+}
+
+.module-icon {
+  font-size: 60rpx;
+  margin-bottom: 15rpx;
+  display: block;
+}
+
+.module-icon.accounting {
+  color: #1ba784;
+}
+
+.module-icon.statistics {
+  color: var(--dopamine-secondary);
+}
+
+.module-icon.budget {
+  color: var(--dopamine-highlight);
+}
+
+.module-icon.wheel {
+  color: var(--dopamine-accent);
+}
+
+.module-icon.qa {
+  color: var(--dopamine-secondary);
+}
+
+.module-icon.dice {
+  color: var(--dopamine-accent);
+}
+
+.module-text {
+  font-size: 26rpx;
+  color: #666;
+}
+
+/* 最近记录 */
+.recent-section {
+  background: white;
+  border-radius: 15rpx;
+  padding: 30rpx;
+  box-shadow: 0 2rpx 10rpx rgba(0, 0, 0, 0.1);
+}
+
+.record-list {
+  margin-top: 20rpx;
+}
+
+.record-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20rpx 0;
+  border-bottom: 1rpx solid #F0F0F0;
+}
+
+.record-item:last-child {
+  border-bottom: none;
+}
+
+.record-left {
+  flex: 1;
+}
+
+.record-category {
+  font-size: 28rpx;
+  font-weight: bold;
+  margin-bottom: 8rpx;
+}
+
+.record-category.expense {
+  color: #f3a694;
+}
+
+.record-category.income {
+  color: #1ba784;
+}
+
+.record-note {
+  font-size: 24rpx;
+  color: #999;
+}
+
+.record-right {
+  text-align: right;
+}
+
+.record-amount {
+  font-size: 32rpx;
+  font-weight: bold;
+  margin-bottom: 5rpx;
+}
+
+.record-amount.expense {
+  color: #f3a694;
+}
+
+.record-amount.income {
+  color: #1ba784;
+}
+
+.record-time {
+  font-size: 22rpx;
+  color: #999;
+}
