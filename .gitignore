@@ -1,6 +1,0 @@
-# Git忽略文件
-miniprogram/.git/
-miniprogram/node_modules/
-*.log
-.DS_Store
-Thumbs.db
