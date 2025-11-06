@@ -1,0 +1,14 @@
+<!--components/custom-navbar/index.wxml-->
+<view class="custom-navbar" style="height: {{navBarHeight}}px; padding-top: {{statusBarHeight}}px;">
+  <view class="navbar-bg">
+    <view class="gradient-bg"></view>
+  </view>
+  <view class="navbar-content">
+    <view class="navbar-back" wx:if="{{showBack}}" bindtap="goBack">
+      <text class="back-icon">‹</text>
+    </view>
+    <view class="navbar-title">{{title}}</view>
+  </view>
+</view>
+<view class="navbar-placeholder" style="height: {{navBarHeight}}px;"></view>
+

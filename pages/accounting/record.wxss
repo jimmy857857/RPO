@@ -1,183 +1,467 @@
 /* pages/accounting/record.wxss */
-.container {
-  padding: 30rpx;
-  background: linear-gradient(135deg, var(--dopamine-primary) 0%, var(--dopamine-secondary) 100%);
-  min-height: 100%;
+page {
+  height: 100%;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 25%, #f093fb 50%, #4facfe 75%, #00f2fe 100%);
+  background-size: 400% 400%;
+  animation: gradientShift 15s ease infinite;
 }
 
-/* 记账类型选择 */
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.container {
+  padding: 20rpx 20rpx;
+  padding-bottom: 120rpx;
+  background: transparent;
+  height: 100vh;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* 记账类型选择 - 苹果液态玻璃效果 */
 .type-section {
-  background: rgba(255, 255, 255, 0.95);
-  border-radius: 20rpx;
-  padding: 25rpx;
-  margin-bottom: 30rpx;
-  backdrop-filter: blur(10rpx);
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(60rpx) saturate(180%);
+  -webkit-backdrop-filter: blur(60rpx) saturate(180%);
+  border-radius: 24rpx;
+  padding: 12rpx;
+  margin-bottom: 16rpx;
+  box-shadow: 
+    0 16rpx 48rpx rgba(0, 0, 0, 0.08),
+    0 8rpx 24rpx rgba(0, 0, 0, 0.06),
+    0 0 0 0.5rpx rgba(255, 255, 255, 0.8) inset;
+  border: 0.5rpx solid rgba(255, 255, 255, 0.6);
+  animation: fadeInUp 0.6s ease-out;
+  flex-shrink: 0;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20rpx);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .type-buttons {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 20rpx;
+  gap: 12rpx;
 }
 
 .type-btn {
   text-align: center;
-  padding: 25rpx;
-  background: #F8F9FA;
-  border-radius: 15rpx;
-  transition: all 0.3s ease;
+  padding: 18rpx 12rpx;
+  background: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(30rpx) saturate(150%);
+  -webkit-backdrop-filter: blur(30rpx) saturate(150%);
+  border-radius: 20rpx;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  border: 0.5rpx solid rgba(255, 255, 255, 0.6);
+  box-shadow: 0 4rpx 16rpx rgba(0, 0, 0, 0.04);
+  position: relative;
+  overflow: hidden;
+}
+
+.type-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1rpx;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.8), transparent);
+  opacity: 0;
+  transition: opacity 0.3s ease;
 }
 
 .type-btn.active {
-  background: var(--dopamine-primary);
-  color: white;
-  transform: scale(1.05);
+  transform: scale(1.02);
+  box-shadow: 
+    0 8rpx 24rpx rgba(0, 0, 0, 0.12),
+    0 0 0 0.5rpx rgba(255, 255, 255, 0.9) inset;
+}
+
+.type-btn.expense-active {
+  background: rgba(255, 59, 48, 0.25);
+  border-color: rgba(255, 59, 48, 0.4);
+}
+
+.type-btn.income-active {
+  background: rgba(52, 199, 89, 0.25);
+  border-color: rgba(52, 199, 89, 0.4);
+}
+
+.type-btn:active {
+  transform: scale(0.98);
+}
+
+.type-btn.active::before {
+  opacity: 1;
 }
 
 .type-icon {
   display: block;
-  font-size: 36rpx;
-  margin-bottom: 8rpx;
+  font-size: 32rpx;
+  margin-bottom: 6rpx;
+  filter: drop-shadow(0 2rpx 4rpx rgba(0, 0, 0, 0.1));
+  transition: transform 0.3s ease;
+}
+
+.type-btn.active .type-icon {
+  transform: scale(1.1);
 }
 
 .type-text {
   display: block;
-  font-size: 26rpx;
-  font-weight: bold;
+  font-size: 24rpx;
+  font-weight: 600;
+  color: rgba(0, 0, 0, 0.85);
+  letter-spacing: -0.3rpx;
 }
 
-/* 金额输入 */
+.type-btn.active .type-text {
+  color: rgba(0, 0, 0, 0.9);
+  font-weight: 700;
+}
+
+/* 金额输入 - 苹果液态玻璃效果 */
 .amount-section {
-  background: rgba(255, 255, 255, 0.95);
-  border-radius: 20rpx;
-  padding: 40rpx;
-  margin-bottom: 30rpx;
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(60rpx) saturate(180%);
+  -webkit-backdrop-filter: blur(60rpx) saturate(180%);
+  border-radius: 28rpx;
+  padding: 28rpx 24rpx 24rpx;
+  margin-bottom: 16rpx;
   text-align: center;
-  backdrop-filter: blur(10rpx);
+  box-shadow: 
+    0 20rpx 60rpx rgba(0, 0, 0, 0.08),
+    0 8rpx 24rpx rgba(0, 0, 0, 0.06),
+    0 0 0 0.5rpx rgba(255, 255, 255, 0.8) inset;
+  border: 0.5rpx solid rgba(255, 255, 255, 0.6);
+  animation: fadeInUp 0.6s ease-out;
+  animation-delay: 0.1s;
+  animation-fill-mode: both;
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.amount-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1rpx;
+  background: linear-gradient(90deg, 
+    transparent 0%, 
+    rgba(255, 255, 255, 0.8) 20%, 
+    rgba(255, 255, 255, 0.9) 50%, 
+    rgba(255, 255, 255, 0.8) 80%, 
+    transparent 100%);
+  z-index: 1;
 }
 
 .amount-input {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 15rpx;
+  gap: 16rpx;
+  margin-bottom: 20rpx;
+  position: relative;
+  z-index: 2;
 }
 
 .currency-symbol {
-  font-size: 48rpx;
-  font-weight: bold;
-  color: #333;
+  font-size: 44rpx;
+  font-weight: 700;
+  color: rgba(0, 0, 0, 0.9);
+  letter-spacing: -1rpx;
 }
 
 .amount-field {
-  font-size: 64rpx;
-  font-weight: bold;
-  color: #333;
+  font-size: 56rpx;
+  font-weight: 700;
+  color: rgba(0, 0, 0, 0.9);
   text-align: center;
   border: none;
   outline: none;
-  width: 300rpx;
+  width: 280rpx;
+  letter-spacing: -1rpx;
+  background: transparent;
 }
 
-/* 分类选择 */
+.amount-field::placeholder {
+  color: rgba(0, 0, 0, 0.3);
+  font-weight: 400;
+}
+
+/* 快捷金额 */
+.quick-amounts {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8rpx;
+  position: relative;
+  z-index: 2;
+}
+
+.quick-item {
+  background: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(30rpx) saturate(150%);
+  -webkit-backdrop-filter: blur(30rpx) saturate(150%);
+  border-radius: 16rpx;
+  padding: 12rpx 8rpx;
+  text-align: center;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  border: 0.5rpx solid rgba(255, 255, 255, 0.6);
+  box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.04);
+}
+
+.quick-item:active {
+  transform: scale(0.95);
+  background: rgba(255, 255, 255, 0.65);
+}
+
+.quick-item-active {
+  background: rgba(0, 122, 255, 0.2) !important;
+  border-color: rgba(0, 122, 255, 0.4) !important;
+  box-shadow: 
+    0 6rpx 20rpx rgba(0, 122, 255, 0.15),
+    0 0 0 0.5rpx rgba(0, 122, 255, 0.3) inset !important;
+}
+
+.quick-text {
+  font-size: 22rpx;
+  color: rgba(0, 0, 0, 0.85);
+  font-weight: 600;
+  letter-spacing: -0.3rpx;
+}
+
+.quick-item-active .quick-text {
+  color: #007aff;
+  font-weight: 700;
+}
+
+/* 分类选择 - 苹果液态玻璃效果 */
 .category-section {
-  background: rgba(255, 255, 255, 0.95);
-  border-radius: 20rpx;
-  padding: 25rpx;
-  margin-bottom: 30rpx;
-  backdrop-filter: blur(10rpx);
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(60rpx) saturate(180%);
+  -webkit-backdrop-filter: blur(60rpx) saturate(180%);
+  border-radius: 28rpx;
+  padding: 20rpx 20rpx;
+  margin-bottom: 16rpx;
+  box-shadow: 
+    0 16rpx 48rpx rgba(0, 0, 0, 0.08),
+    0 8rpx 24rpx rgba(0, 0, 0, 0.06),
+    0 0 0 0.5rpx rgba(255, 255, 255, 0.8) inset;
+  border: 0.5rpx solid rgba(255, 255, 255, 0.6);
+  animation: fadeInUp 0.6s ease-out;
+  animation-delay: 0.2s;
+  animation-fill-mode: both;
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
 }
 
 .section-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 20rpx;
+  margin-bottom: 16rpx;
+  flex-shrink: 0;
 }
 
 .section-title {
   font-size: 28rpx;
-  font-weight: bold;
-  color: #333;
+  font-weight: 700;
+  color: rgba(0, 0, 0, 0.9);
+  letter-spacing: -0.5rpx;
 }
 
 .category-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 15rpx;
+  gap: 10rpx;
+  flex: 1;
+  overflow-y: auto;
+  min-height: 0;
+  max-height: 280rpx;
+  padding-right: 4rpx;
 }
 
 .category-item {
   text-align: center;
-  padding: 20rpx 10rpx;
-  background: #F8F9FA;
-  border-radius: 10rpx;
-  transition: all 0.3s ease;
+  padding: 16rpx 8rpx;
+  background: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(30rpx) saturate(150%);
+  -webkit-backdrop-filter: blur(30rpx) saturate(150%);
+  border-radius: 16rpx;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  border: 0.5rpx solid rgba(255, 255, 255, 0.6);
+  box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.04);
+  position: relative;
+  overflow: hidden;
+}
+
+.category-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1rpx;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.8), transparent);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.category-item:active {
+  transform: scale(0.95);
 }
 
 .category-item.active {
-  background: #1ba784;
-  color: white;
+  background: rgba(0, 122, 255, 0.2);
+  border-color: rgba(0, 122, 255, 0.4);
+  box-shadow: 
+    0 8rpx 24rpx rgba(0, 122, 255, 0.15),
+    0 0 0 0.5rpx rgba(0, 122, 255, 0.3) inset;
   transform: scale(1.05);
+}
+
+.category-item.active::before {
+  opacity: 1;
 }
 
 .category-icon {
   display: block;
-  font-size: 32rpx;
-  margin-bottom: 5rpx;
+  font-size: 28rpx;
+  margin-bottom: 4rpx;
+  filter: drop-shadow(0 2rpx 4rpx rgba(0, 0, 0, 0.1));
+  transition: transform 0.3s ease;
+}
+
+.category-item.active .category-icon {
+  transform: scale(1.15);
 }
 
 .category-name {
   display: block;
-  font-size: 22rpx;
+  font-size: 20rpx;
+  color: rgba(0, 0, 0, 0.85);
+  font-weight: 500;
+  line-height: 1.2;
 }
 
-/* 详细信息 */
+.category-item.active .category-name {
+  color: #007aff;
+  font-weight: 600;
+}
+
+/* 详细信息 - 苹果液态玻璃效果 */
 .detail-section {
-  background: rgba(255, 255, 255, 0.95);
-  border-radius: 20rpx;
-  padding: 25rpx;
-  margin-bottom: 30rpx;
-  backdrop-filter: blur(10rpx);
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(60rpx) saturate(180%);
+  -webkit-backdrop-filter: blur(60rpx) saturate(180%);
+  border-radius: 28rpx;
+  padding: 16rpx 20rpx;
+  margin-bottom: 16rpx;
+  box-shadow: 
+    0 16rpx 48rpx rgba(0, 0, 0, 0.08),
+    0 8rpx 24rpx rgba(0, 0, 0, 0.06),
+    0 0 0 0.5rpx rgba(255, 255, 255, 0.8) inset;
+  border: 0.5rpx solid rgba(255, 255, 255, 0.6);
+  animation: fadeInUp 0.6s ease-out;
+  animation-delay: 0.3s;
+  animation-fill-mode: both;
+  flex-shrink: 0;
+}
+
+.detail-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12rpx;
+  margin-bottom: 12rpx;
+}
+
+.detail-item-compact {
+  display: flex;
+  flex-direction: column;
+  gap: 8rpx;
+}
+
+.detail-label-compact {
+  font-size: 22rpx;
+  color: rgba(0, 0, 0, 0.7);
+  font-weight: 500;
 }
 
 .detail-item {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20rpx 0;
-  border-bottom: 1rpx solid #F0F0F0;
+  padding: 12rpx 0;
+  transition: all 0.3s ease;
 }
 
-.detail-item:last-child {
-  border-bottom: none;
+.detail-item:active {
+  background: rgba(0, 0, 0, 0.02);
+  border-radius: 16rpx;
+  margin: 0 -8rpx;
+  padding-left: 8rpx;
+  padding-right: 8rpx;
 }
 
 .detail-label {
   font-size: 26rpx;
-  color: #333;
-  font-weight: bold;
+  color: rgba(0, 0, 0, 0.85);
+  font-weight: 600;
+  letter-spacing: -0.3rpx;
 }
 
 .date-picker, .payment-picker {
-  background: #F8F9FA;
-  border-radius: 8rpx;
-  padding: 15rpx 20rpx;
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(20rpx) saturate(150%);
+  -webkit-backdrop-filter: blur(20rpx) saturate(150%);
+  border-radius: 12rpx;
+  padding: 10rpx 14rpx;
+  border: 0.5rpx solid rgba(255, 255, 255, 0.7);
+  box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.04);
+  transition: all 0.3s ease;
+}
+
+.date-picker:active, .payment-picker:active {
+  background: rgba(255, 255, 255, 0.8);
+  transform: scale(0.98);
 }
 
 .date-text, .payment-text {
-  font-size: 24rpx;
-  color: #666;
+  font-size: 22rpx;
+  color: rgba(0, 0, 0, 0.7);
+  font-weight: 500;
 }
 
 .note-input {
-  background: #F8F9FA;
-  border-radius: 8rpx;
-  padding: 15rpx;
-  font-size: 24rpx;
-  color: #666;
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(20rpx) saturate(150%);
+  -webkit-backdrop-filter: blur(20rpx) saturate(150%);
+  border-radius: 12rpx;
+  padding: 10rpx 14rpx;
+  font-size: 22rpx;
+  color: rgba(0, 0, 0, 0.85);
   width: 200rpx;
   text-align: right;
+  border: 0.5rpx solid rgba(255, 255, 255, 0.7);
+  box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.04);
 }
 
 .upload-section {
@@ -187,16 +471,21 @@
 }
 
 .upload-btn {
-  background: #F8F9FA;
-  border: 2rpx dashed #CCC;
-  border-radius: 8rpx;
-  padding: 20rpx;
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(20rpx) saturate(150%);
+  -webkit-backdrop-filter: blur(20rpx) saturate(150%);
+  border: 2rpx dashed rgba(0, 0, 0, 0.2);
+  border-radius: 16rpx;
+  padding: 16rpx;
   text-align: center;
-  transition: all 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.04);
 }
 
 .upload-btn:active {
-  background: #E9ECEF;
+  background: rgba(255, 255, 255, 0.8);
+  transform: scale(0.98);
+  border-color: rgba(0, 122, 255, 0.4);
 }
 
 .upload-icon {
@@ -234,74 +523,81 @@
   font-size: 24rpx;
 }
 
-/* 操作按钮 */
+/* 操作按钮 - 苹果液态玻璃效果 */
 .action-section {
-  margin-bottom: 30rpx;
+  margin-bottom: 0;
+  animation: fadeInUp 0.6s ease-out;
+  animation-delay: 0.4s;
+  animation-fill-mode: both;
+  flex-shrink: 0;
 }
 
 .save-btn {
-  background: #1ba784;
+  background: linear-gradient(135deg, #007aff, #5ac8fa);
   color: white;
-  border: 2rpx solid #1ba784;
-  border-radius: 50rpx;
-  padding: 25rpx;
-  font-size: 32rpx;
-  font-weight: bold;
+  border: none;
+  border-radius: 24rpx;
+  padding: 22rpx;
+  font-size: 30rpx;
+  font-weight: 700;
   width: 100%;
-  margin-bottom: 15rpx;
+  margin-bottom: 12rpx;
+  box-shadow: 
+    0 12rpx 32rpx rgba(0, 122, 255, 0.3),
+    0 4rpx 16rpx rgba(0, 122, 255, 0.2);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  letter-spacing: -0.5rpx;
+  position: relative;
+  overflow: hidden;
+}
+
+.save-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: left 0.5s;
+}
+
+.save-btn:active {
+  transform: scale(0.98);
+  box-shadow: 
+    0 8rpx 24rpx rgba(0, 122, 255, 0.25),
+    0 2rpx 8rpx rgba(0, 122, 255, 0.15);
+}
+
+.save-btn:active::before {
+  left: 100%;
 }
 
 .save-btn:disabled {
-  background: #CCC;
-  opacity: 0.6;
+  background: rgba(0, 0, 0, 0.1);
+  color: rgba(0, 0, 0, 0.3);
+  box-shadow: none;
+  opacity: 0.5;
 }
 
 .cancel-btn {
-  background: #F8F9FA;
-  color: #666;
-  border: none;
-  border-radius: 50rpx;
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(30rpx) saturate(150%);
+  -webkit-backdrop-filter: blur(30rpx) saturate(150%);
+  color: rgba(0, 0, 0, 0.7);
+  border: 0.5rpx solid rgba(255, 255, 255, 0.7);
+  border-radius: 24rpx;
   padding: 20rpx;
   font-size: 28rpx;
+  font-weight: 600;
   width: 100%;
+  box-shadow: 0 4rpx 16rpx rgba(0, 0, 0, 0.06);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* 快捷操作 */
-.quick-section {
-  background: rgba(255, 255, 255, 0.95);
-  border-radius: 20rpx;
-  padding: 25rpx;
-  margin-bottom: 30rpx;
-  backdrop-filter: blur(10rpx);
+.cancel-btn:active {
+  transform: scale(0.98);
+  background: rgba(255, 255, 255, 0.8);
 }
 
-.quick-title {
-  font-size: 26rpx;
-  font-weight: bold;
-  color: #333;
-  margin-bottom: 15rpx;
-}
-
-.quick-amounts {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 15rpx;
-}
-
-.quick-item {
-  background: #F8F9FA;
-  border-radius: 8rpx;
-  padding: 15rpx;
-  text-align: center;
-  transition: all 0.3s ease;
-}
-
-.quick-item:active {
-  background: #E9ECEF;
-}
-
-.quick-text {
-  font-size: 24rpx;
-  color: #666;
-}
 

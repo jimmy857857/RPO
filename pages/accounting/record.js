@@ -3,7 +3,7 @@ Page({
   data: {
     amount: '',
     recordType: 'expense',
-    selectedCategory: '餐饮',
+    selectedCategory: '',
     note: '',
     recordDate: '',
     paymentMethods: ['微信支付', '支付宝', '现金', '银行卡', '信用卡'],
@@ -59,7 +59,8 @@ Page({
   onTypeChange(e) {
     const type = e.currentTarget.dataset.type;
     this.setData({
-      recordType: type
+      recordType: type,
+      selectedCategory: '' // 切换类型时清空分类选择
     });
   },
 

@@ -1,10 +1,11 @@
 <!--pages/accounting/record.wxml-->
+<custom-tab-bar></custom-tab-bar>
 <view class="container">
   <!-- 记账类型选择 -->
   <view class="type-section">
     <view class="type-buttons">
       <view 
-        class="type-btn {{recordType === 'expense' ? 'active' : ''}}" 
+        class="type-btn {{recordType === 'expense' ? 'active expense-active' : ''}}" 
         data-type="expense"
         bindtap="onTypeChange"
       >
@@ -12,7 +13,7 @@
         <text class="type-text">支出</text>
       </view>
       <view 
-        class="type-btn {{recordType === 'income' ? 'active' : ''}}" 
+        class="type-btn {{recordType === 'income' ? 'active income-active' : ''}}" 
         data-type="income"
         bindtap="onTypeChange"
       >
@@ -22,7 +23,7 @@
     </view>
   </view>
 
-  <!-- 金额输入 -->
+  <!-- 金额输入区域 -->
   <view class="amount-section">
     <view class="amount-input">
       <text class="currency-symbol">¥</text>
@@ -35,18 +36,31 @@
         focus="{{true}}"
       />
     </view>
+    <!-- 快捷金额 -->
+    <view class="quick-amounts">
+      <view 
+        class="quick-item {{amount == item ? 'quick-item-active' : ''}}" 
+        wx:for="{{quickAmounts}}" 
+        wx:key="index"
+        data-amount="{{item}}"
+        bindtap="onQuickAmountSelect"
+      >
+        <text class="quick-text">¥{{item}}</text>
+      </view>
+    </view>
   </view>
 
   <!-- 分类选择 -->
   <view class="category-section">
     <view class="section-header">
-      <text class="section-title" style="color: var(--dopamine-primary);">选择分类</text>
+      <text class="section-title">选择分类</text>
     </view>
     <view class="category-grid">
       <view 
         class="category-item {{selectedCategory === item.id ? 'active' : ''}}" 
         wx:for="{{categories}}" 
         wx:key="id"
+        wx:if="{{item.type === recordType || item.type === 'both'}}"
         data-category="{{item.id}}"
         bindtap="onCategorySelect"
       >
@@ -58,30 +72,30 @@
 
   <!-- 详细信息 -->
   <view class="detail-section">
-    <view class="detail-item">
-      <text class="detail-label">日期</text>
-      <picker 
-        class="date-picker" 
-        mode="date" 
-        value="{{recordDate}}"
-        bindchange="onDateChange"
-      >
-        <text class="date-text">{{recordDate}}</text>
-      </picker>
+    <view class="detail-row">
+      <view class="detail-item-compact">
+        <text class="detail-label-compact">日期</text>
+        <picker 
+          class="date-picker" 
+          mode="date" 
+          value="{{recordDate}}"
+          bindchange="onDateChange"
+        >
+          <text class="date-text">{{recordDate}}</text>
+        </picker>
+      </view>
+      <view class="detail-item-compact">
+        <text class="detail-label-compact">支付方式</text>
+        <picker 
+          class="payment-picker" 
+          range="{{paymentMethods}}"
+          value="{{paymentIndex}}"
+          bindchange="onPaymentChange"
+        >
+          <text class="payment-text">{{paymentMethods[paymentIndex]}}</text>
+        </picker>
+      </view>
     </view>
-
-    <view class="detail-item">
-      <text class="detail-label">支付方式</text>
-      <picker 
-        class="payment-picker" 
-        range="{{paymentMethods}}"
-        value="{{paymentIndex}}"
-        bindchange="onPaymentChange"
-      >
-        <text class="payment-text">{{paymentMethods[paymentIndex]}}</text>
-      </picker>
-    </view>
-
     <view class="detail-item">
       <text class="detail-label">备注</text>
       <input 
@@ -90,24 +104,6 @@
         value="{{note}}"
         bindinput="onNoteInput"
       />
-    </view>
-
-    <view class="detail-item">
-      <text class="detail-label">上传凭证</text>
-      <view class="upload-section">
-        <view 
-          class="upload-btn" 
-          bindtap="onUploadReceipt"
-          wx:if="{{!receiptImage}}"
-        >
-          <text class="upload-icon">📎</text>
-          <text class="upload-text">上传图片</text>
-        </view>
-        <view class="image-preview" wx:if="{{receiptImage}}">
-          <image class="receipt-image" src="{{receiptImage}}" mode="aspectFill"></image>
-          <button class="remove-btn" bindtap="onRemoveImage">×</button>
-        </view>
-      </view>
     </view>
   </view>
 
@@ -129,22 +125,5 @@
       取消编辑
     </button>
   </view>
-
-  <!-- 快捷操作 -->
-  <view class="quick-section">
-    <view class="quick-title">常用金额</view>
-    <view class="quick-amounts">
-      <view 
-        class="quick-item" 
-        wx:for="{{quickAmounts}}" 
-        wx:key="index"
-        data-amount="{{item}}"
-        bindtap="onQuickAmountSelect"
-      >
-        <text class="quick-text">¥{{item}}</text>
-      </view>
-    </view>
-  </view>
-
 
 </view>

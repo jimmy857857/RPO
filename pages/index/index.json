@@ -5,6 +5,7 @@
   "backgroundColor": "#F8F9FA",
   "backgroundTextStyle": "light",
   "usingComponents": {
-    "cloud-tip-modal": "/components/cloudTipModal/index"
+    "cloud-tip-modal": "/components/cloudTipModal/index",
+    "custom-tab-bar": "/custom-tab-bar/index"
   }
 }

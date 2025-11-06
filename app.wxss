@@ -153,3 +153,6 @@ page {
 .gradient-accent {
   background: linear-gradient(135deg, var(--dopamine-accent), var(--dopamine-secondary));
 }
+
+/* TabBar 玻璃态效果 - 注意：微信小程序原生 tabBar 样式有限，这里提供基础样式 */
+/* 如需完全自定义，需要启用 custom: true 并使用自定义 tabBar 组件 */
